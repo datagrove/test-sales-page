@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../.././config.js';
+import { SITE } from '.././config.js';
 import BasicScripts from '../components/BasicScripts.astro';
 
 const {language = 'en', textDirection = "ltr"} = SITE
@@ -10,13 +10,8 @@ const {language = 'en', textDirection = "ltr"} = SITE
   <head>
   </head>
 
-  <body>
+  <body class="text-page bg-gray-200 dark:bg-black">
     <slot />
     <BasicScripts />
-    <style is:global>
-      img {
-        content-visibility: auto;
-      }
-    </style>
   </body>
 </html>

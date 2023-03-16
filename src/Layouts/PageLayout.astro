@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
+import { headerData } from '../head_foot_data'
 ---
 
 <BaseLayout>
     <slot name="header">
-      <Header />
+      <Header {...headerData}/>
     </slot>
     <main>
       <slot />
