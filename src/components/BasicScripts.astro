@@ -1,0 +1,35 @@
+---
+import { SITE } from '../.././config.js';
+---
+
+<script is:inline define:vars={{ defaultTheme: SITE.defaultTheme }}>
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
+    applyTheme(defaultTheme.replace(':only', ''));
+  } else if (
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
+
+  window.onload = function () {
+
+    attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
+      if (defaultTheme.endsWith(':only')) {
+        return;
+      }
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    });
+};
+</script>

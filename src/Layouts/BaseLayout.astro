@@ -1,0 +1,22 @@
+---
+import { SITE } from '../.././config.js';
+import BasicScripts from '../components/BasicScripts.astro';
+
+const {language = 'en', textDirection = "ltr"} = SITE
+---
+
+<!DOCTYPE html>
+<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+  <head>
+  </head>
+
+  <body class="antialiased text-page bg-light dark:text-slate-300 tracking-tight dark:bg-dark">
+    <slot />
+    <BasicScripts />
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>
