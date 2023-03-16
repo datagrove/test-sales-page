@@ -2,6 +2,7 @@
   "name": "datagrove-testing-portal",
   "type": "module",
   "version": "0.0.1",
+  "types": "./src/env.d.ts",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
