@@ -25,8 +25,8 @@ const {
 <header
   class="top-0 z-40 flex-none mx-auto w-full transition-all ease-in duration-100"
 >
-  <div class="bg-purple-300 flex content-center h-fit justify-between">
-    <div>
+  <div class="flex content-center h-fit justify-evenly">
+    <div class="w-1/4">
       <a href="https://datagrove.com">
         <svg
           class="w-48 h-48 dark:fill-gray-400 fill-black"
@@ -43,23 +43,24 @@ const {
         </svg>
       </a>
     </div>
-    <div class="flex content-center">
+
+    <div class="flex place-content-center w-1/4">
       <ToggleTheme />
     </div>
  
-  <nav class="">
-    <ul>
-      {
-        links.map(({ text, href }) => (
-          <a
-            class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-            href={href}
-          >
-            {text}
-          </a>
-        ))
-      }
-    </ul>
-  </nav>
+    <nav class="flex content-center w-1/4">
+      <ul class="flex content-center">
+        {
+          links.map(({ text, href }) => (
+            <a
+              class="text-4xl text-center hover:text-gray-900 dark:hover:text-white dark:text-gray-400 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+              href={href}
+            >
+              {text}
+            </a>
+          ))
+        }
+      </ul>
+    </nav>
 </div>
 </header>
