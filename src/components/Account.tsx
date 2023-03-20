@@ -75,11 +75,11 @@ const Account: Component<Props> = ({ session }) => {
   }
 
   return (
-    <div aria-live="polite">
-      <form onSubmit={updateProfile} class="form-widget">
-        <div>Email: {session.user.email}</div>
-        <div>
-          <label for="username">Name</label>
+    <div aria-live="polite" class="dark:text-gray-400 align-center">
+      <form onSubmit={updateProfile} class="form-widget dark:bg-bg-gray">
+        <div class="p-3">Email: {session.user.email}</div>
+        <div class="p-3">
+          <label for="username" class="pr-8">Name</label>
           <input
             id="username"
             type="text"
@@ -87,8 +87,8 @@ const Account: Component<Props> = ({ session }) => {
             onChange={(e) => setUsername(e.currentTarget.value)}
           />
         </div>
-        <div>
-          <label for="website">Website</label>
+        <div class="p-3">
+          <label for="website" class="pr-4">Website</label>
           <input
             id="website"
             type="text"
@@ -96,14 +96,16 @@ const Account: Component<Props> = ({ session }) => {
             onChange={(e) => setWebsite(e.currentTarget.value)}
           />
         </div>
-        <div>
-          <button type="submit" class="button primary block" disabled={loading()}>
+        <div class="p-3">
+          <button type="submit" class="button bg-transparent hover:bg-blue-500 dark:hover:bg-black text-blue-700 dark:text-gray-400 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border-2 border-blue-500 dark:border-gray-400 hover:border-transparent rounded" disabled={loading()}>
             {loading() ? 'Saving ...' : 'Update profile'}
           </button>
         </div>
-        <button type="button" class="button block" onClick={() => supabase.auth.signOut()}>
+        <div class="p-3">
+        <button type="button" class="button bg-transparent hover:bg-blue-500 dark:hover:bg-black text-blue-700 dark:text-gray-400 font-semibold hover:text-white dark:hover:text-white py-2 px-4 border-2 border-blue-500 dark:border-gray-400 hover:border-transparent rounded" onClick={() => supabase.auth.signOut()}>
           Sign Out
         </button>
+        </div>
       </form>
     </div>
   )
