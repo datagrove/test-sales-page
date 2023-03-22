@@ -2,11 +2,12 @@
 import { SITE } from "../config";
 import PageLayout from '../Layouts/PageLayout.astro';
 import App from "../components/App";
+import OrderForm from "../components/OrderForm";
 
 ---
 
 <PageLayout>
 	<h1>{SITE.title}</h1>
-	<App client:load />
+	<OrderForm client:load />
 </PageLayout>
 
