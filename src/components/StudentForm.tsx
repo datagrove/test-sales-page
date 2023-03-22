@@ -1,9 +1,13 @@
 import { Component, createEffect, createSignal } from 'solid-js'
 import { supabase } from './SupabaseClient'
 
+interface Props {
+    onSubmitStudentFirstName: (studentFirstName: string) => void;
+    onSubmitStudentLastName: (studentLastName: string) => void;
+    onSubmitStudentGrade: (studentGrade: string) => void;
+  }
 
-
-const StudentForm: Component = ({onSubmit}: props) => {
+const StudentForm: Component = ({onSubmitStudentFirstName}: Props, {onSubmitStudentLastName}:Props, {onSubmitStudentGrade}:Props ) => {
     const [studentFirstName, setStudentFirstName] = createSignal<string>('')
     const [studentLastName, setStudentLastName] = createSignal<string>('')
     const [studentGrade, setStudentGrade] = createSignal<string>('')
@@ -47,9 +51,9 @@ const StudentForm: Component = ({onSubmit}: props) => {
           <button 
           disabled={studentFirstName() === '' || studentLastName() === '' || studentGrade() === '' || studentFirstName() == null || studentLastName() == null || studentGrade() == null}
           onClick={() => {
-              onSubmit(studentFirstName())
-              onSubmit(studentLastName())
-              onSubmit(studentGrade())
+            onSubmitStudentFirstName(studentFirstName())
+              onSubmitStudentLastName(studentLastName())
+              onSubmitStudentGrade(studentGrade())
               setStudentFirstName('')
               setStudentLastName('')
               setStudentGrade('')
