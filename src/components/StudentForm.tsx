@@ -1,69 +1,59 @@
-import { Component, createEffect, createSignal } from 'solid-js'
-import { supabase } from './SupabaseClient'
+import { Component, createSignal } from 'solid-js';
 
-interface Props {
-    onSubmitStudentFirstName: (studentFirstName: string) => void;
-    onSubmitStudentLastName: (studentLastName: string) => void;
-    onSubmitStudentGrade: (studentGrade: string) => void;
-  }
+const StudentForm: Component = () => {
+    const [studentFirstName, setStudentFirstName] = createSignal("")
+    const [studentLastName, setStudentLastName] = createSignal("")
+    const [allStudents, setAllStudents] = createSignal<string[]>([])
+    // const [studentGrade, setStudentGrade] = createSignal<string[]>([])
 
-const StudentForm: Component = ({onSubmitStudentFirstName}: Props, {onSubmitStudentLastName}:Props, {onSubmitStudentGrade}:Props ) => {
-    const [studentFirstName, setStudentFirstName] = createSignal<string>('')
-    const [studentLastName, setStudentLastName] = createSignal<string>('')
-    const [studentGrade, setStudentGrade] = createSignal<string>('')
-  
-  
+    function handleSubmit(e) {
+        // setStudentFirstName("")
+        // setAllStudents(allStudents => ['test', ...allStudents])
+        // console.log({ allStudents })
+        setAllStudents(["an", "array", "of", "strings"])
+        setAllStudents()
+        console.log({ allStudents })
+    }
+    
     return (
-      <div aria-live="polite" class="dark:text-gray-400 align-center">
-        <form onSubmit={()=>{}} class="form-widget dark:bg-bg-gray">
-          <div class="p-3">
-            <label for="studentFirstName" class="pr-8">Student First Name</label>
-            <input
-              id="studentFirstName"
-              type="text"
-              value={[]}
-              required
-              onChange={(e) => setStudentFirstName(e.currentTarget.value)}
-            />
-          </div>
-          <div class="p-3">
-            <label for="studentLastName" class="pr-8">Last Name</label>
-            <input
-              id="studentLastName"
-              type="text"
-              value={""}
-              required
-              onChange={(e) => setStudentLastName(e.currentTarget.value)}
-            />
-          </div>
-          <div class="p-3">
-            <label for="studentGrade" class="pr-4">Student Grade</label>
-            <input
-              id="studentGrade"
-              type="number"
-              value={''}
-              required
-              min = "2"
-              max = "12"
-              onChange={(e) => setStudentGrade(e.currentTarget.value)}
-            />
-          </div>
-          <button 
-          disabled={studentFirstName() === '' || studentLastName() === '' || studentGrade() === '' || studentFirstName() == null || studentLastName() == null || studentGrade() == null}
-          onClick={() => {
-            onSubmitStudentFirstName(studentFirstName())
-              onSubmitStudentLastName(studentLastName())
-              onSubmitStudentGrade(studentGrade())
-              setStudentFirstName('')
-              setStudentLastName('')
-              setStudentGrade('')
-          }}
-          >
-            Add
-            </button>
-        </form>
-      </div>
-    )
-  }
+        <div>
+            <div class="p-3">
+                <label for="firstName" class="pr-8">First Name</label>
+                <input
+                    id="firstName"
+                    type="text"
+                    value={""}
+                    onChange={(e) => setStudentFirstName(e.currentTarget.value)}
+                />
+            </div>
+            <div class="p-3">
+                <label for="lastName" class="pr-8">Last Name</label>
+                <input
+                    id="lastName"
+                    type="text"
+                    value={""}
+                    onInput={(e) => setStudentLastName(e.currentTarget.value)}
+                />
+            </div>
+            <div>
+                <button 
+                    type="button"
+                    class="rounded-full bg-green-200 px-4 py-1 border-2 border-gray-500"
+                    // onClick={ () => setStudentFirstName((name) => name + "oopsy") }
+                    onClick = { handleSubmit }
 
-export default StudentForm
+
+                >
+                    Add Student
+                </button>
+            </div>
+
+            <div>
+                { studentFirstName }
+                <br />
+            </div>
+        </div>
+    )
+}
+
+export default StudentForm;
