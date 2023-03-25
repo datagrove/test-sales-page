@@ -3,7 +3,8 @@ import { loadStripe } from '@stripe/stripe-js'
 import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
 import { Order, loadCart } from './data'
 
-const api_key = import.meta.env.PUBLIC_STRIPE_API
+// IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
+const api_key = "pk_test_cHTcIzOuFvXfzHdpfP3etUKY"
 export const PayForm: Component<{}> = (props) => {
   const [stripe, setStripe] = createSignal(null)
   const otxt = window.localStorage.order
@@ -11,9 +12,8 @@ export const PayForm: Component<{}> = (props) => {
   const n = order.student.length
 
   onMount(async () => {
-    const result = await loadStripe(import.meta.env.PUBLIC_STRIPE_API)
+    const result = await loadStripe(api_key)
     setStripe(result as any)
-    
   })
 
   return (
@@ -35,42 +35,40 @@ async function pay() {
 function CheckoutForm() {
   const stripe = useStripe()
   const elements = useStripeElements()
-  const clientSecret = ""
 
-  // const [, { Form }] = createRouteAction(async () => {
-  //   const clientSecret = "" // fetch from /api/create-payment-intent
-  //   // When the form submits, pass the CardNumber component to stripe().confirmCardPayment()
-  //   const result = await stripe().confirmCardPayment(clientSecret, {
-  //     payment_method: {
-  //       card: elements().getElement(CardNumber),
-  //       billing_details: {},
-  //     },
-  //   })
-
-  //   if (result.error) {
-  //     // payment failed
-  //   }
-  //   else {
-  //     // payment succeeded
-  //   }
-  // })
   const [paying,setPaying] = createSignal(false)
   const [error, setError] = createSignal("")
   const submit = async (e: any)=>{
     e.preventDefault()
     setPaying(true)
     console.log("paying...")
-    const payerror = ''
-    if (!payerror) {
+    // we have to build the intent
+    const a = await fetch('/intent', {
+      method: 'POST',
+      cache: "no-cache", 
+      body: JSON.stringify({})
+    })
+    const b = await a.json();
+    const result = await stripe().confirmCardPayment(b.clientSecret, {
+      payment_method: {
+        card: elements().getElement(CardNumber)!,
+        billing_details: {},
+      },
+    })
+
+    if (!result.error) {
       location.href = '/thankyou'
     } else {
       setPaying(false)
-      setError(payerror)
+      setError(result.error.message??"unknown error")
     }
   }
   return (
     <div>
-      <div>error()</div>
+      <div>4242 4242 4242 4242</div>
+      <div>12/34</div>
+      <div>999</div>
+      <div>{error()}</div>
     <form onsubmit={submit}>
       <CardNumber />
       <CardExpiry />
