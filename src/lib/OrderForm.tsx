@@ -1,13 +1,10 @@
-import type { AuthSession } from '@supabase/supabase-js'
-import { Component, For, createEffect, createSignal, onMount } from 'solid-js'
+
+import { Component, For, createSignal, onMount } from 'solid-js'
 import StudentForm from './StudentForm'
 import type { Order, Student } from './data';
 
-interface Props {
-  session: AuthSession;
-}
 
-const OrderForm: Component = () => {
+export const OrderForm: Component = () => {
 
   const [order, setOrder] = createSignal<Order>({
     first: '',
@@ -79,13 +76,9 @@ const OrderForm: Component = () => {
           }}</For>
         </div>
         <button onClick={addStudent}>Add Student</button>
-        <div><button 
-          onClick={checkout}
-          >
+        <div><a href='/pay'> 
             Checkout
-            </button></div>
+            </a></div>
     </div>
   )
 }
-
-export default OrderForm
