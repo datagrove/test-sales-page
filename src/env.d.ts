@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_SUPABASE_ANON_KEY: string;
-    readonly VITE_SUPABASE_URL: string;
+    readonly anon_key: string;
+    readonly API_URL: string;
     // more env variables...
   }

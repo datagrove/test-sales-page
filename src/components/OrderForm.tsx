@@ -1,31 +1,52 @@
 import type { AuthSession } from '@supabase/supabase-js'
-import { Component, createEffect, createSignal } from 'solid-js'
-import { supabase } from './SupabaseClient'
+import { Component, For, createEffect, createSignal, onMount } from 'solid-js'
 import StudentForm from './StudentForm'
+import type { Order, Student } from './data';
 
 interface Props {
   session: AuthSession;
 }
 
 const OrderForm: Component = () => {
-  const [firstName, setFirstName] = createSignal("")
-  const [lastName, setLastName] = createSignal("")
-  const [email, setEmail] = createSignal("")
-  const [studentFirstName, setStudentFirsName] = createSignal<string[]>([])
-  const [studentLastName, setStudentLastName] = createSignal<string[]>([])
-  const [studentGrade, setStudentGrade] = createSignal<string[]>([])
 
+  const [order, setOrder] = createSignal<Order>({
+    first: '',
+    last: '',
+    email: '',
+    student: [{first: '', last: '', grade: ''}]
+  })
+  onMount(()=>{
+    if (window.localStorage.order) {
+      const a = JSON.parse(window.localStorage.order)
+      console.log("loaded ", a)
+      setOrder(a)
+    }
+  })
+  const update = (p: Partial<Order>) => {
+    setOrder({ ...order(), ...p })
+    window.localStorage.order = JSON.stringify(order());
+    console.log(window.localStorage.order)
+  }
+  const addStudent = ()=>{
+    update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
+  }
+  const remove = (i: number) => {
+    const o = [ ...order().student]
+    o.splice(i,1)
+    update({student: o})
+  }
+  const checkout = () =>{
 
+  }
   return (
     <div aria-live="polite" class="dark:text-gray-400 align-center">
-      <form onSubmit={()=>{}} class="form-widget dark:bg-bg-gray">
         <div class="p-3">
           <label for="firstName" class="pr-8">First Name</label>
           <input
             id="firstName"
             type="text"
-            value={""}
-            onChange={(e) => setFirstName(e.currentTarget.value)}
+            value={order().first}
+            onChange={(e) => update({first: e.currentTarget.value})}
           />
         </div>
         <div class="p-3">
@@ -33,8 +54,8 @@ const OrderForm: Component = () => {
           <input
             id="lastName"
             type="text"
-            value={""}
-            onChange={(e) => setLastName(e.currentTarget.value)}
+            value={order().last}
+            onChange={(e) => update({last: e.currentTarget.value})}
           />
         </div>
         <div class="p-3">
@@ -42,16 +63,27 @@ const OrderForm: Component = () => {
           <input
             id="email"
             type="text"
-            value={''}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            value={order().email}
+            onChange={(e) => update({email: e.currentTarget.value})}
           />
         </div>
         <hr />
         <h3>Your Students</h3>
         <div>
-          <StudentForm />
+          <For each={order().student} >{ (e,i)=> {
+            return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
+              const o = order().student;
+              o[i()] = s
+              update({student: o})
+            }} onRemove={()=>{remove(i())}}/>
+          }}</For>
         </div>
-      </form>
+        <button onClick={addStudent}>Add Student</button>
+        <div><button 
+          onClick={checkout}
+          >
+            Checkout
+            </button></div>
     </div>
   )
 }

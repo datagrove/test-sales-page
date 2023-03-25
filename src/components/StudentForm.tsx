@@ -1,29 +1,29 @@
-import { Component, createEffect, createSignal } from 'solid-js'
-import { supabase } from './SupabaseClient'
+import type { Component } from 'solid-js'
+import type { Student } from './data'
 
 interface Props {
-    onSubmitStudentFirstName: (studentFirstName: string) => void;
-    onSubmitStudentLastName: (studentLastName: string) => void;
-    onSubmitStudentGrade: (studentGrade: string) => void;
+    onRemove: () => void
+    setStudent: (s: Student)=>void
+    student: ()=>Student
   }
 
-const StudentForm: Component = ({onSubmitStudentFirstName}: Props, {onSubmitStudentLastName}:Props, {onSubmitStudentGrade}:Props ) => {
-    const [studentFirstName, setStudentFirstName] = createSignal<string>('')
-    const [studentLastName, setStudentLastName] = createSignal<string>('')
-    const [studentGrade, setStudentGrade] = createSignal<string>('')
-  
-  
+const StudentForm: Component<Props> = (props: Props ) => {
+    const update = (p: Partial<Student>) => {
+      props.setStudent({
+        ...props.student(),
+        ...p
+      })
+    }
     return (
       <div aria-live="polite" class="dark:text-gray-400 align-center">
-        <form onSubmit={()=>{}} class="form-widget dark:bg-bg-gray">
           <div class="p-3">
             <label for="studentFirstName" class="pr-8">Student First Name</label>
             <input
               id="studentFirstName"
               type="text"
-              value={[]}
-              required
-              onChange={(e) => setStudentFirstName(e.currentTarget.value)}
+              value={props.student().first}
+              
+              onChange={(e) => update( { first: e.currentTarget.value})}
             />
           </div>
           <div class="p-3">
@@ -31,9 +31,9 @@ const StudentForm: Component = ({onSubmitStudentFirstName}: Props, {onSubmitStud
             <input
               id="studentLastName"
               type="text"
-              value={""}
-              required
-              onChange={(e) => setStudentLastName(e.currentTarget.value)}
+              value={props.student().last}
+              
+              onChange={(e) => update({ last: e.currentTarget.value})}
             />
           </div>
           <div class="p-3">
@@ -41,27 +41,19 @@ const StudentForm: Component = ({onSubmitStudentFirstName}: Props, {onSubmitStud
             <input
               id="studentGrade"
               type="number"
-              value={''}
-              required
+              value={props.student().grade}
+              
               min = "2"
               max = "12"
-              onChange={(e) => setStudentGrade(e.currentTarget.value)}
+              onChange={(e) => update({grade: e.currentTarget.value})}
             />
           </div>
           <button 
-          disabled={studentFirstName() === '' || studentLastName() === '' || studentGrade() === '' || studentFirstName() == null || studentLastName() == null || studentGrade() == null}
-          onClick={() => {
-            onSubmitStudentFirstName(studentFirstName())
-              onSubmitStudentLastName(studentLastName())
-              onSubmitStudentGrade(studentGrade())
-              setStudentFirstName('')
-              setStudentLastName('')
-              setStudentGrade('')
-          }}
+          onClick={props.onRemove}
           >
-            Add
+            Remove
             </button>
-        </form>
+
       </div>
     )
   }
