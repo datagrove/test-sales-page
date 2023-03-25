@@ -1,17 +1,12 @@
 
 import { Component, For, createSignal, onMount } from 'solid-js'
 import StudentForm from './StudentForm'
-import type { Order, Student } from './data';
+import { Order, Student, loadCart } from './data';
 
 
 export const OrderForm: Component = () => {
 
-  const [order, setOrder] = createSignal<Order>({
-    first: '',
-    last: '',
-    email: '',
-    student: [{first: '', last: '', grade: ''}]
-  })
+  const [order, setOrder] = createSignal<Order>(loadCart())
   onMount(()=>{
     if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)

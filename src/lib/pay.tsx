@@ -1,18 +1,24 @@
-import { Show, createSignal, onMount } from 'solid-js'
+import { Component, Show, createSignal, onMount } from 'solid-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
+import { Order, loadCart } from './data'
 
 const api_key = import.meta.env.PUBLIC_STRIPE_API
-export function PayForm() {
+export const PayForm: Component<{}> = (props) => {
   const [stripe, setStripe] = createSignal(null)
+  const otxt = window.localStorage.order
+  const order = loadCart()
+  const n = order.student.length
 
   onMount(async () => {
     const result = await loadStripe(import.meta.env.PUBLIC_STRIPE_API)
     setStripe(result as any)
+    
   })
 
   return (
-    <div><div>API key ={api_key}=</div>
+    <div>
+    <div>Amount: {n} tests * 15 = ${n*15}</div>
     <Show when={stripe()} fallback={<div>Loading stripe</div>}>
       <Elements stripe={stripe() as any}>
        <CheckoutForm/>
@@ -22,10 +28,14 @@ export function PayForm() {
   )
 }
 
+async function pay() {
+  return ""
+}
 
 function CheckoutForm() {
   const stripe = useStripe()
   const elements = useStripeElements()
+  const clientSecret = ""
 
   // const [, { Form }] = createRouteAction(async () => {
   //   const clientSecret = "" // fetch from /api/create-payment-intent
@@ -44,13 +54,29 @@ function CheckoutForm() {
   //     // payment succeeded
   //   }
   // })
-
+  const [paying,setPaying] = createSignal(false)
+  const [error, setError] = createSignal("")
+  const submit = async (e: any)=>{
+    e.preventDefault()
+    setPaying(true)
+    console.log("paying...")
+    const payerror = ''
+    if (!payerror) {
+      location.href = '/thankyou'
+    } else {
+      setPaying(false)
+      setError(payerror)
+    }
+  }
   return (
-    <form>
+    <div>
+      <div>error()</div>
+    <form onsubmit={submit}>
       <CardNumber />
       <CardExpiry />
       <CardCvc />
       <button>Pay</button>
     </form>
+    </div>
   )
 }
