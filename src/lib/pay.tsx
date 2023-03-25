@@ -4,7 +4,7 @@ import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements
 import { Order, loadCart } from './data'
 
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
-const api_key = "pk_test_cHTcIzOuFvXfzHdpfP3etUKY"
+const api_key = import.meta.env.PUBLIC_STRIPE_API
 export const PayForm: Component<{}> = (props) => {
   const [stripe, setStripe] = createSignal(null)
   const otxt = window.localStorage.order
@@ -65,10 +65,13 @@ function CheckoutForm() {
   }
   return (
     <div>
+      <div>You can use these values to test</div>
+      <div>Your public stripe key is {api_key}</div>
       <div>4242 4242 4242 4242</div>
       <div>12/34</div>
       <div>999</div>
       <div>{error()}</div>
+      
     <form onsubmit={submit}>
       <CardNumber />
       <CardExpiry />
