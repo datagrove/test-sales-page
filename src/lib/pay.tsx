@@ -3,6 +3,11 @@ import { loadStripe } from '@stripe/stripe-js'
 import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
 import { Order, loadCart } from './data'
 
+const order = loadCart()
+const n = order.student.length
+const price = 20 * 100
+const orderTotal = n * price
+
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
 const api_key = import.meta.env.PUBLIC_STRIPE_API
 export const PayForm: Component<{}> = (props) => {
@@ -10,6 +15,7 @@ export const PayForm: Component<{}> = (props) => {
   const otxt = window.localStorage.order
   const order = loadCart()
   const n = order.student.length
+  const price = 20 * 100
 
   onMount(async () => {
     const result = await loadStripe(api_key)
@@ -18,7 +24,7 @@ export const PayForm: Component<{}> = (props) => {
 
   return (
     <div>
-    <div class="dark:text-white">Amount: {n} tests * 15 = ${n*15}</div>
+    <div class="dark:text-white">Amount: {n} tests * 20 = ${n*20}</div>
     <Show when={stripe()} fallback={<div>Loading stripe</div>}>
       <Elements stripe={stripe() as any}>
        <CheckoutForm/>
@@ -46,7 +52,7 @@ function CheckoutForm() {
     const a = await fetch('/intent', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({})
+      body: JSON.stringify({"amount":Number(orderTotal)}),
     })
     const b = await a.json();
     const result = await stripe().confirmCardPayment(b.clientSecret, {

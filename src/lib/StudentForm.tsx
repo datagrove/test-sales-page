@@ -42,7 +42,6 @@ const StudentForm: Component<Props> = (props: Props ) => {
               id="studentGrade"
               type="number"
               value={props.student().grade}
-              
               min = "2"
               max = "12"
               onChange={(e) => update({grade: e.currentTarget.value})}
