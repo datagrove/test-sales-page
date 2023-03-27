@@ -64,7 +64,7 @@ function CheckoutForm() {
     }
   }
   return (
-    <div>
+    <div class="dark:text-white">
       <div>You can use these values to test</div>
       <div>Your public stripe key is {api_key}</div>
       <div>4242 4242 4242 4242</div>
@@ -72,10 +72,12 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div>
       
-    <form onsubmit={submit}>
+    <form onsubmit={submit} >
+      <div class="bg-gray-200">
       <CardNumber />
       <CardExpiry />
       <CardCvc />
+      </div>
       <button>Pay</button>
     </form>
     </div>
