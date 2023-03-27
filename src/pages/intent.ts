@@ -8,10 +8,10 @@ const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API,{
 
 export const post: APIRoute = async function get ({params, request}) {
 
-  console.log(params, request)
+  const body = await request.json()
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: JSON.parse(params.body!).amount,
+    amount: body.amount,
     currency: 'usd',
     automatic_payment_methods: { enabled: true },
   })
