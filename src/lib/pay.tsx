@@ -18,7 +18,7 @@ export const PayForm: Component<{}> = (props) => {
 
   return (
     <div>
-    <div>Amount: {n} tests * 15 = ${n*15}</div>
+    <div class="dark:text-white">Amount: {n} tests * 15 = ${n*15}</div>
     <Show when={stripe()} fallback={<div>Loading stripe</div>}>
       <Elements stripe={stripe() as any}>
        <CheckoutForm/>
