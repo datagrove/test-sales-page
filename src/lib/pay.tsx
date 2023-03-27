@@ -49,10 +49,13 @@ function CheckoutForm() {
     setPaying(true)
     console.log("paying...")
     // we have to build the intent
+    const body = JSON.stringify({"amount":Number(orderTotal)})
+    console.log(body)
+
     const a = await fetch('/intent', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal)}),
+      body: body,
     })
     const b = await a.json();
     const result = await stripe().confirmCardPayment(b.clientSecret, {

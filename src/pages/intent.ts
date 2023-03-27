@@ -1,13 +1,14 @@
 
 import Stripe from 'stripe'
 import type { APIRoute } from 'astro';
-import { loadCart } from '../lib/data'
 
 const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API,{
   apiVersion: '2022-11-15'
 })
 
 export const post: APIRoute = async function get ({params, request}) {
+
+  console.log(params, request)
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: JSON.parse(params.body!).amount,
