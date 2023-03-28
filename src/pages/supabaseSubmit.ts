@@ -22,14 +22,19 @@ export const post: APIRoute = async ({ request }) => {
     
     let submission: any = {}
 
-    submission[firstName] = firstName
-    submission[lastName] = lastName
-    submission[email] = email
+    submission.firstName = firstName
+    submission.lastName = lastName
+    submission.email = email
     // submission.students = students
-    console.log("submission:" + [submission])
+    // console.log("submission:" + [submission[firstName], submission[lastName], submission[email]])
 
 
-    const { data , error } = await supabase.from('profile').insert([submission])
+    const { error } = await supabase.from('profile').insert([submission])
+    
+
+    if (error) {
+        alert(error.message)
+    }
 
     // Do something with the formData, then return a success response
     return new Response(
