@@ -26,15 +26,42 @@ export const post: APIRoute = async ({ request }) => {
     submission.lastName = lastName
     submission.email = email
     // submission.students = students
-    // console.log("submission:" + [submission[firstName], submission[lastName], submission[email]])
-
-
-    const { error } = await supabase.from('profile').insert([submission])
     
+    const { error, data } = await supabase.from('profile').insert([submission]).select()
 
     if (error) {
         alert(error.message)
     }
+
+    if (!data){
+        return new Response(
+            JSON.stringify({
+                message: "Error creating profile",
+            }),
+            { status: 500 }
+        );
+    } else {
+    console.log(data[0].order_number)
+    const order_number = data[0].order_number
+    
+
+    // let studentSubmission: any = {}
+    
+    students.forEach(async (element: { first: string; last: string; grade: number; }) => {
+        let studentSubmission: any = {}
+        
+        studentSubmission.order_number = order_number
+        studentSubmission.studentFirstName = element.first
+        studentSubmission.studentLastName = element.last
+        studentSubmission.grade = element.grade
+    
+        const { error: studentError, data: studentData } = await supabase.from('Test_Info').insert([studentSubmission])
+
+        if (studentError) {
+            alert(studentError.message)
+        }
+
+    });
 
     // Do something with the formData, then return a success response
     return new Response(
@@ -43,4 +70,4 @@ export const post: APIRoute = async ({ request }) => {
       }),
       { status: 200 }
     );
-  };
+  }};

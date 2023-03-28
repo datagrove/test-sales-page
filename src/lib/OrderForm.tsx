@@ -3,19 +3,18 @@ import { Component, For, createSignal, onMount, createResource } from 'solid-js'
 import StudentForm from './StudentForm'
 import { Order, Student, loadCart } from './data';
 
-async function postFormData(formData: Order) {
-  const response = await fetch("/supabaseSubmit", {
-    method: "POST",
-    body: JSON.stringify(formData),
-  });
-  const data = await response.json();
-  return data;
-}
+// async function postFormData(formData: Order) {
+//   const response = await fetch("/supabaseSubmit", {
+//     method: "POST",
+//     body: JSON.stringify(formData),
+//   });
+//   const data = await response.json();
+//   return data;
+// }
 
 export const OrderForm: Component = () => {
 
   const [order, setOrder] = createSignal<Order>(loadCart())
-  const [response] = createResource(order, postFormData)
 
   onMount(()=>{
     if (window.localStorage.order) {

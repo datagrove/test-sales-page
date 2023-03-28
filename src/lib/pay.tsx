@@ -64,6 +64,10 @@ function CheckoutForm() {
     })
 
     if (!result.error) {
+      const response = await fetch("/supabaseSubmit", {
+        method: "POST",
+        body: JSON.stringify(loadCart()),
+      });
       location.href = '/thankyou'
     } else {
       setPaying(false)
