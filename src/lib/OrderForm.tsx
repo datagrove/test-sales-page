@@ -43,7 +43,7 @@ export const OrderForm: Component = () => {
 
   function submit(e: SubmitEvent) {
     e.preventDefault();
-    setOrder(new <Order>(e.target as HTMLFormElement));
+    setOrder(new Order(e.target as HTMLFormElement));
   }
   
 
@@ -55,6 +55,7 @@ export const OrderForm: Component = () => {
           <input
             id="firstName"
             type="text"
+            required
             value={order().first}
             onChange={(e) => update({first: e.currentTarget.value})}
           />
@@ -64,6 +65,7 @@ export const OrderForm: Component = () => {
           <input
             id="lastName"
             type="text"
+            required
             value={order().last}
             onChange={(e) => update({last: e.currentTarget.value})}
           />
@@ -73,6 +75,7 @@ export const OrderForm: Component = () => {
           <input
             id="email"
             type="text"
+            required
             value={order().email}
             onChange={(e) => update({email: e.currentTarget.value})}
           />

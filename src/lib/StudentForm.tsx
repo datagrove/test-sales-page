@@ -21,6 +21,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
             <input
               id="studentFirstName"
               type="text"
+              required
               value={props.student().first}
               
               onChange={(e) => update( { first: e.currentTarget.value})}
@@ -31,6 +32,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
             <input
               id="studentLastName"
               type="text"
+              required
               value={props.student().last}
               
               onChange={(e) => update({ last: e.currentTarget.value})}
@@ -41,6 +43,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
             <input
               id="studentGrade"
               type="number"
+              required
               value={props.student().grade}
               min = "2"
               max = "12"
