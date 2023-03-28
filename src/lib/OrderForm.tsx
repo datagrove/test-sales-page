@@ -33,7 +33,6 @@ export const OrderForm: Component = () => {
   }
   return (
     <div aria-live="polite" class="dark:text-gray-400 align-center">
-      <script src="./SupabaseSubmit.tsx"></script>
       <form id="order-form">
         <div class="p-3">
           <label for="firstName" class="pr-8">First Name</label>
@@ -78,6 +77,8 @@ export const OrderForm: Component = () => {
             Checkout
             </a></button>
     </form>
+    <script src='./test.tsx'>
+    </script>
     </div>
   )
 }
