@@ -4,6 +4,7 @@ import StudentForm from './StudentForm'
 import { Order, Student, loadCart } from './data';
 
 
+
 export const OrderForm: Component = () => {
 
   const [order, setOrder] = createSignal<Order>(loadCart())
@@ -32,6 +33,8 @@ export const OrderForm: Component = () => {
   }
   return (
     <div aria-live="polite" class="dark:text-gray-400 align-center">
+      <script src="./SupabaseSubmit.tsx"></script>
+      <form id="order-form">
         <div class="p-3">
           <label for="firstName" class="pr-8">First Name</label>
           <input
@@ -71,9 +74,10 @@ export const OrderForm: Component = () => {
           }}</For>
         </div>
         <button onClick={addStudent}>Add Student</button>
-        <div><a href='/pay'> 
+        <button id="checkout"><a href='/pay'> 
             Checkout
-            </a></div>
+            </a></button>
+    </form>
     </div>
   )
 }

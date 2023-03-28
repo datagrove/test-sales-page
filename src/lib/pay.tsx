@@ -3,10 +3,6 @@ import { loadStripe } from '@stripe/stripe-js'
 import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
 import { Order, loadCart } from './data'
 
-const order = loadCart()
-const n = order.student.length
-const price = 20 * 100
-const orderTotal = n * price
 
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
 const api_key = import.meta.env.PUBLIC_STRIPE_API
@@ -49,13 +45,15 @@ function CheckoutForm() {
     setPaying(true)
     console.log("paying...")
     // we have to build the intent
-    const body = JSON.stringify({"amount":Number(orderTotal)})
-    console.log(body)
+    const order = loadCart()
+    const n = order.student.length
+    const price = 20 * 100
+    const orderTotal = n * price
 
     const a = await fetch('/intent', {
       method: 'POST',
       cache: "no-cache", 
-      body: body,
+      body: JSON.stringify({"amount":Number(orderTotal)}),
     })
     const b = await a.json();
     const result = await stripe().confirmCardPayment(b.clientSecret, {
