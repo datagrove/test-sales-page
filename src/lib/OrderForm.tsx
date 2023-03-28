@@ -1,13 +1,22 @@
 
-import { Component, For, createSignal, onMount } from 'solid-js'
+import { Component, For, createSignal, onMount, createResource } from 'solid-js'
 import StudentForm from './StudentForm'
 import { Order, Student, loadCart } from './data';
 
-
+async function postFormData(formData: Order) {
+  const response = await fetch("/supabaseSubmit", {
+    method: "POST",
+    body: formData,
+  });
+  const data = await response.json();
+  return data;
+}
 
 export const OrderForm: Component = () => {
 
   const [order, setOrder] = createSignal<Order>(loadCart())
+  const [response] = createResource(order, postFormData)
+
   onMount(()=>{
     if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
@@ -31,9 +40,16 @@ export const OrderForm: Component = () => {
   const checkout = () =>{
 
   }
+
+  function submit(e: SubmitEvent) {
+    e.preventDefault();
+    setOrder(new <Order>(e.target as HTMLFormElement));
+  }
+  
+
   return (
     <div aria-live="polite" class="dark:text-gray-400 align-center">
-      <form id="order-form">
+      <form id="order-form" onSubmit={submit}>
         <div class="p-3">
           <label for="firstName" class="pr-8">First Name</label>
           <input
@@ -77,8 +93,7 @@ export const OrderForm: Component = () => {
             Checkout
             </a></button>
     </form>
-    <script src='./test.tsx'>
-    </script>
+
     </div>
   )
 }
