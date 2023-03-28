@@ -10,6 +10,7 @@ export const post: APIRoute = async function get ({params, request}) {
 
   const body = await request.json()
 
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount: body.amount,
     currency: 'usd',

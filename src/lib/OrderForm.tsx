@@ -6,7 +6,7 @@ import { Order, Student, loadCart } from './data';
 async function postFormData(formData: Order) {
   const response = await fetch("/supabaseSubmit", {
     method: "POST",
-    body: formData,
+    body: JSON.stringify(formData),
   });
   const data = await response.json();
   return data;
@@ -40,16 +40,11 @@ export const OrderForm: Component = () => {
   const checkout = () =>{
 
   }
-
-  function submit(e: SubmitEvent) {
-    e.preventDefault();
-    setOrder(new Order(e.target as HTMLFormElement));
-  }
   
 
   return (
     <div aria-live="polite" class="dark:text-gray-400 align-center">
-      <form id="order-form" onSubmit={submit}>
+      <form id="order-form">
         <div class="p-3">
           <label for="firstName" class="pr-8">First Name</label>
           <input

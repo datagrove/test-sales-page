@@ -1,36 +1,12 @@
 import supabase from '../components/SupabaseClient'
 import type { APIRoute } from "astro";
 
-// const form = document.querySelector('#checkout')
-// form?.addEventListener('click', async (e) => {
-//     e.preventDefault()
-
-//     const formInputs = form?.querySelectorAll('input')
-
-//     let submission: any = {}
-
-//     formInputs.forEach(element => {
-//         const { value, name } = element
-//         if(value){
-//             submission[name] = value
-//         }
-//     })
-
-//     const {formData, error } = await supabase.from('profile').insert([submission])
-
-//     if (error) {
-//         throw error
-//     } else {
-//         alert(formData)
-//     }
-// })
-
 export const post: APIRoute = async ({ request }) => {
-    const formData = await request.formData();
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
-    const email = formData.get("email");
-    const students = formData.get("student");
+    const formData = await request.json();
+    const firstName = formData.first;
+    const lastName = formData.last;
+    const email = formData.email;
+    const students = formData.student;
 
     console.log(students)
 
@@ -46,10 +22,11 @@ export const post: APIRoute = async ({ request }) => {
     
     let submission: any = {}
 
-    submission.firstName = firstName
-    submission.lastName = lastName
-    submission.email = email
-    submission.students = students
+    submission[firstName] = firstName
+    submission[lastName] = lastName
+    submission[email] = email
+    // submission.students = students
+    console.log("submission:" + [submission])
 
 
     const { data , error } = await supabase.from('profile').insert([submission])
