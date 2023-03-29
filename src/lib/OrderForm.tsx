@@ -105,13 +105,34 @@ export const OrderForm: Component = () => {
             }}
             </For>
           </div>
-          <button disabled={ false } onClick={addStudent}>Add Another Student</button>
+          <button 
+            class="flex w-full justify-center"
+            disabled={ false } 
+            onClick={addStudent}
+
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="#000000" 
+              height="24px" 
+              width="24px" 
+              version="1.1" viewBox="0 0 512 512" 
+              enable-background="new 0 0 512 512">
+              <g>
+                <g>
+                  <path d="M256,11C120.9,11,11,120.9,11,256s109.9,245,245,245s245-109.9,245-245S391.1,11,256,11z M256,460.2    c-112.6,0-204.2-91.6-204.2-204.2S143.4,51.8,256,51.8S460.2,143.4,460.2,256S368.6,460.2,256,460.2z"/>
+                  <path d="m357.6,235.6h-81.2v-81.2c0-11.3-9.1-20.4-20.4-20.4-11.3,0-20.4,9.1-20.4,20.4v81.2h-81.2c-11.3,0-20.4,9.1-20.4,20.4s9.1,20.4 20.4,20.4h81.2v81.2c0,11.3 9.1,20.4 20.4,20.4 11.3,0 20.4-9.1 20.4-20.4v-81.2h81.2c11.3,0 20.4-9.1 20.4-20.4s-9.1-20.4-20.4-20.4z"/>
+                </g>
+              </g>
+            </svg>
+            <p class="px-2">Add Another Student</p>
+          </button>
           <br />
         </div>
         <div class="flex justify-center mt-4">
           <button 
             id="checkout"
-            class="bg-green-700 rounded px-4 py-2 w-full text-white justify-center border-2 border-green-900 dark:border-slate-400"
+            class="bg-green-700 rounded-full shadow px-4 py-2 w-full text-white justify-center border border-green-900 dark:border-slate-400"
           >
             <a href='/pay'> 
               Checkout
