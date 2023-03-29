@@ -39,6 +39,10 @@ export const OrderForm: Component = () => {
   const checkout = () =>{
 
   }
+
+  // const addStudentEnabaled = () => {
+  //   if()
+  // }
   
 
   return (
@@ -47,59 +51,73 @@ export const OrderForm: Component = () => {
         id="order-form"
         class="w-full md:w-2/3 md:max-w-1/2"
       >
-        <div class="p-3">
-          {/* <label for="firstName" class="pr-8">First Name</label> */}
-          <input
-            id="firstName"
-            class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
-            type="text"
-            placeholder='First name'
-            required
-            value={order().first}
-            onChange={(e) => update({first: e.currentTarget.value})}
-          />
+        <div class="mb-6">
+          <h3 class="text-xl">Your Information</h3>
+          <div class="p-3">
+            {/* <label for="firstName" class="pr-8">First Name</label> */}
+            <input
+              id="firstName"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
+              type="text"
+              placeholder='First Name'
+              required
+              value={order().first}
+              onChange={(e) => update({first: e.currentTarget.value})}
+            />
+          </div>
+          <div class="p-3">
+            {/* <label for="lastName" class="pr-8">Last Name</label> */}
+            <input
+              id="lastName"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
+              type="text"
+              required
+              placeholder='Last Name'
+              value={order().last}
+              onChange={(e) => update({last: e.currentTarget.value})}
+            />
+          </div>
+          <div class="p-3">
+            {/* <label for="email" class="pr-4">Email</label> */}
+            <input
+              id="email"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 last:w-full"
+              type="text"
+              required
+              placeholder='Email'
+              value={order().email}
+              onChange={(e) => update({email: e.currentTarget.value})}
+            />
+          </div>
         </div>
-        <div class="p-3">
-          {/* <label for="lastName" class="pr-8">Last Name</label> */}
-          <input
-            id="lastName"
-            class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
-            type="text"
-            required
-            placeholder='Last name'
-            value={order().last}
-            onChange={(e) => update({last: e.currentTarget.value})}
-          />
-        </div>
-        <div class="p-3">
-          {/* <label for="email" class="pr-4">Email</label> */}
-          <input
-            id="email"
-            class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
-            type="text"
-            required
-            placeholder='Email'
-            value={order().email}
-            onChange={(e) => update({email: e.currentTarget.value})}
-          />
-        </div>
-        <hr />
-        <h3>Your Student(s)</h3>
-        <div class="border-2 border-gray-300 m-4 p-4 rounded shadow-lg">
+        {/* <hr /> */}
+        <div class="mb-6">
+          <h3 class="text-xl">Your Student(s)</h3>
+          <div class="m-2">
 
-          <For each={order().student} >{ (e,i)=> {
-            return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
-              const o = order().student;
-              o[i()] = s
-              update({student: o})
-            }} onRemove={()=>{remove(i())}}/>
-          }}</For>
+            <For each={order().student} >{ (e,i)=> {
+              <div></div>
+              return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
+                const o = order().student;
+                o[i()] = s
+                update({student: o})
+              }} onRemove={()=>{remove(i())}}/>
+            }}
+            </For>
+          </div>
+          <button disabled={ false } onClick={addStudent}>Add Another Student</button>
+          <br />
         </div>
-        <button onClick={addStudent}>Add Another Student</button>
-        <br />
-        <button id="checkout"><a href='/pay'> 
-            Checkout
-            </a></button>
+        <div class="flex justify-center mt-4">
+          <button 
+            id="checkout"
+            class="bg-green-700 rounded px-4 py-2 w-full text-white justify-center border-2 border-green-900 dark:border-slate-400"
+          >
+            <a href='/pay'> 
+              Checkout
+            </a>
+          </button>
+        </div>
     </form>
 
     </div>

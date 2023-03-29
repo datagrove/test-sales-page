@@ -21,15 +21,15 @@ const {
     links = []
 } = Astro.props;
 ---
-
+<div class="">
 <header
-  class="top-0 z-40 flex-none mx-auto w-full transition-all ease-in duration-100"
+  class="top-0 w-full transition-all ease-in duration-100"
 >
-  <div class="flex content-center h-fit justify-evenly">
+  <div class="flex w-full content-center h-fit justify-between items-center">
     <div class="w-1/4">
       <a href="https://datagrove.com">
         <svg
-          class="w-48 h-48 dark:fill-gray-400 fill-black"
+          class="lg:w-48 lg:h-48 w-12 h-12 dark:fill-gray-400 fill-black"
           version="1.1"
           viewBox="0 0 350 350"
           xml:space="preserve"
@@ -53,7 +53,7 @@ const {
         {
           links.map(({ text, href }) => (
             <a
-              class="text-4xl text-center hover:text-gray-900 dark:hover:text-white dark:text-gray-400 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+              class="sm:text-xl md:text-2xl lg:text-4xl text-center hover:text-gray-900 dark:hover:text-white dark:text-gray-400 px-4 py-3 flex items-center transition duration-150 ease-in-out"
               href={href}
             >
               {text}
@@ -64,3 +64,4 @@ const {
     </nav>
 </div>
 </header>
+</div>
