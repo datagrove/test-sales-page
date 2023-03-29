@@ -17,9 +17,11 @@ const StudentForm: Component<Props> = (props: Props ) => {
     return (
       <div aria-live="polite" class="dark:text-gray-400 align-center">
           <div class="p-3">
-            <label for="studentFirstName" class="pr-8">Student First Name</label>
+            {/* <label for="studentFirstName" class="pr-8">Student First Name</label> */}
             <input
               id="studentFirstName"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
+              placeholder='Student First Name'
               type="text"
               required
               value={props.student().first}
@@ -28,10 +30,12 @@ const StudentForm: Component<Props> = (props: Props ) => {
             />
           </div>
           <div class="p-3">
-            <label for="studentLastName" class="pr-8">Last Name</label>
+            {/* <label for="studentLastName" class="pr-8">Last Name</label> */}
             <input
               id="studentLastName"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
               type="text"
+              placeholder='Student Last Name'
               required
               value={props.student().last}
               
@@ -39,10 +43,12 @@ const StudentForm: Component<Props> = (props: Props ) => {
             />
           </div>
           <div class="p-3">
-            <label for="studentGrade" class="pr-4">Student Grade</label>
+            {/* <label for="studentGrade" class="pr-4">Student Grade</label> */}
             <input
               id="studentGrade"
+              class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 w-full"
               type="number"
+              placeholder='Student Grade'
               required
               value={props.student().grade}
               min = "2"
