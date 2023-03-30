@@ -117,7 +117,9 @@ export const OrderForm: Component = () => {
               height="24px" 
               width="24px" 
               version="1.1" viewBox="0 0 512 512" 
-              enable-background="new 0 0 512 512">
+              enable-background="new 0 0 512 512"
+              class="dark:fill-slate-400"
+            >
               <g>
                 <g>
                   <path d="M256,11C120.9,11,11,120.9,11,256s109.9,245,245,245s245-109.9,245-245S391.1,11,256,11z M256,460.2    c-112.6,0-204.2-91.6-204.2-204.2S143.4,51.8,256,51.8S460.2,143.4,460.2,256S368.6,460.2,256,460.2z"/>
