@@ -49,12 +49,29 @@ const StudentForm: Component<Props> = (props: Props ) => {
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
               type="number"
               placeholder='Student Grade'
-              required
+              // required
               value={props.student().grade}
               min = "2"
               max = "12"
               onChange={(e) => update({grade: e.currentTarget.value})}
             />
+
+            {/* <select
+              name="grades" 
+              id="studentGrade"
+              value={props.student().grade}
+              onChange={(e) => update({ grade: e.currentTarget.value })}
+            >
+              <option value="select">Grade</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select> */}
+
+            {/* <p>Current grade is: { props.student().grade }</p> */}
+
           </div>
           <button 
           onClick={props.onRemove}
