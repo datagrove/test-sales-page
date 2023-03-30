@@ -24,7 +24,7 @@ export const PayForm: Component<{}> = (props) => {
   return (
     <div>
       <div class="my-4 flex flex-col justify-center items-center">
-        <h2 class="text-2xl font-bold">Your Test Order</h2>
+        <h2 class="text-2xl font-bold">Order Summary</h2>
         <div class="flex flex-col w-96 my-4 dark:text-slate-400">
           {/* Amount: {n} tests * 20 = ${n*20} */}
 
