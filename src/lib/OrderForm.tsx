@@ -96,7 +96,6 @@ export const OrderForm: Component = () => {
           <div class="m-2">
 
             <For each={order().student} >{ (e,i)=> {
-              <div></div>
               return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
                 const o = order().student;
                 o[i()] = s
@@ -127,7 +126,7 @@ export const OrderForm: Component = () => {
                 </g>
               </g>
             </svg>
-            <p class="px-2">Add Another Student</p>
+            <p class="px-2">Add Student</p>
           </button>
           <br />
         </div>
