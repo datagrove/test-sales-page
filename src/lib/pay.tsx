@@ -23,9 +23,9 @@ export const PayForm: Component<{}> = (props) => {
 
   return (
     <div>
-      <div class="my-4 flex flex-col justify-center items-center">
+      <div class="my-4 flex flex-col justify-center items-center mb-10">
         <h2 class="text-2xl font-bold">Order Summary</h2>
-        <div class="flex flex-col w-96 my-4 dark:text-slate-400">
+        <div class="flex flex-col w-96 dark:text-slate-400">
           {/* Amount: {n} tests * 20 = ${n*20} */}
 
           { 
@@ -61,7 +61,7 @@ export const PayForm: Component<{}> = (props) => {
         </div>
 
         <div class="flex">
-          <p class="font-bold text-2xl">Total: ${ n*20 }.00</p>
+          <p class="font-bold text-xl">Total: ${ n*20 }.00</p>
         </div>
       </div>
       
@@ -121,20 +121,34 @@ function CheckoutForm() {
   return (
     <div class="dark:text-white">
       
-      <div>You can use these values to test</div>
+      {/* <div>You can use these values to test</div>
       <div>Your public stripe key is {api_key}</div>
       <div>4242 4242 4242 4242</div>
       <div>12/34</div>
       <div>999</div>
-      <div>{error()}</div>
+      <div>{error()}</div> */}
       
     <form onsubmit={submit} >
-      <div class="bg-gray-200">
-      <CardNumber />
-      <CardExpiry />
-      <CardCvc />
+      <div class="flex flex-col items-center justify-center">
+        <div class="bg-gray-200 dark:bg-black w-96 mb-4">
+          <div class="p-2 my-2 rounded border-2 border-slate-400">
+            <CardNumber />
+          </div>
+          
+          <div class="flex">
+            <div class="p-2 my-2 w-1/2 mr-2 rounded border-2 border-slate-400">
+              <CardExpiry />
+            </div>
+
+            <div class="p-2 my-2 w-1/2 ml-2 rounded border-2 border-slate-400">
+              <CardCvc />
+            </div>
+          </div>
+        </div>
+        <button class="bg-green-700 rounded-full shadow px-4 py-2 w-96 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
+          Pay
+        </button>
       </div>
-      <button>Pay</button>
     </form>
     </div>
   )
