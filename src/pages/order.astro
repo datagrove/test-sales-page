@@ -5,8 +5,10 @@ import { OrderForm } from "../lib/OrderForm";
 ---
 
 <PageLayout>
-	<h1>{SITE.title}</h1>
-	<h2>Order</h2>
+	<div class="text-center mt-4 mb-8">
+		<h1 class="text-2xl w-full pb-2">{SITE.title}</h1>
+		<h2 class="text-xl w-full italic">Test Order Form</h2>
+	</div>
 	<OrderForm client:load />
 </PageLayout>
 

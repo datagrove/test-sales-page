@@ -8,8 +8,6 @@ export const post: APIRoute = async ({ request }) => {
     const email = formData.email;
     const students = formData.student;
 
-    console.log(students)
-
     // Validate the formData - you'll probably want to do more than this
     if (!firstName || !email || !lastName || !students) {
       return new Response(
@@ -41,7 +39,6 @@ export const post: APIRoute = async ({ request }) => {
             { status: 500 }
         );
     } else {
-    console.log(data[0].order_number)
     const order_number = data[0].order_number
     
 

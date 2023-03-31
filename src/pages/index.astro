@@ -5,8 +5,49 @@ import PageLayout from '../Layouts/PageLayout.astro';
 ---
 
 <PageLayout>
-	<h1 class="dark:text-white">{SITE.title}</h1>
-	<h2 class="dark:text-white">Home</h2>
-	<a href="/order" class="dark:text-white">Order</a>
+	<!-- <h1 class="dark:text-white text-4xl">{SITE.title}</h1> -->
+	<!-- <h2 class="dark:text-white">Home</h2> -->
+	<div class="flex flex-col items-center mt-8 mb-24">
+		<div class="max-w-2xl">
+			<p>
+			Datagrove and Pawpaw Homeschool Solutions is pleased to provide
+			<a href="https://www.academicexcellence.com/complete-online-california-achievement-test-not-timed/"
+			class="underline"
+			>
+				California Achievement Test (CAT)</a> codes. 
+			</p>
+			<br />
+			<p>
+			The CAT, offered by 
+			<a href="https://www.academicexcellence.com/" class="underline">
+			Academic Excellence</a>, is one of the most widely used of the student
+			assessment for basic academic skills, and meets most state and
+			umbrella school requirements for annual testing.
+			</p>
+			<br />
+			<p>
+			CAT codes can be purchased through Datagrove for $20.00 per test.
+			For each test purchased, you will need to enter the student's full name and grade.		</p>
+			<br />
+			<ul class="list-disc list-outside">
+				Your CAT code purchase includes:
+				<li class="ml-5">One Untimed, Comprehensive, Online Achievement Test (reading, language, and mathematics)</li>
+				<li class="ml-5">Printable Certificate of Completion</li>
+				<li class="ml-5">Premium Scoring and Test Analysis</li>
+			</ul>
+		</div>
+		
+		<div class="flex justify-center mt-8">
+			<button 
+			id="checkout"
+			class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400"
+			>
+			<a href='/order'> 
+				Order Test Codes
+			</a>
+			</button>
+		</div>
+	</div>
+	<!-- <a href="/order" class="dark:text-white">Order</a> -->
 </PageLayout>
 
