@@ -54,7 +54,7 @@ export const OrderForm: Component = () => {
         <div class="mb-6">
           <h3 class="text-xl">Your Information</h3>
           <div class="p-3">
-            {/* <label for="firstName" class="pr-8">First Name</label> */}
+            <label for="firstName" class=" sr-only">First Name</label>
             <input
               id="firstName"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
@@ -66,7 +66,7 @@ export const OrderForm: Component = () => {
             />
           </div>
           <div class="p-3">
-            {/* <label for="lastName" class="pr-8">Last Name</label> */}
+            <label for="lastName" class="sr-only">Last Name</label>
             <input
               id="lastName"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
@@ -78,7 +78,7 @@ export const OrderForm: Component = () => {
             />
           </div>
           <div class="p-3">
-            {/* <label for="email" class="pr-4">Email</label> */}
+            <label for="email" class="sr-only">Email</label>
             <input
               id="email"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 last:w-full"
