@@ -129,17 +129,17 @@ function CheckoutForm() {
       
     <form onsubmit={submit} >
       <div class="flex flex-col items-center justify-center mb-24">
-        <div class="bg-gray-200 dark:bg-black w-80 mb-4">
-          <div class="p-2 my-2 rounded border-2 border-slate-400">
+        <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
+          <div class="p-2 my-4 rounded border-2 border-slate-400">
             <CardNumber />
           </div>
           
           <div class="flex">
-            <div class="p-2 my-2 w-1/2 mr-2 rounded border-2 border-slate-400">
+            <div class="p-2 my-4 w-1/2 mr-2 rounded border-2 border-slate-400">
               <CardExpiry />
             </div>
 
-            <div class="p-2 my-2 w-1/2 ml-2 rounded border-2 border-slate-400">
+            <div class="p-2 my-4 w-1/2 ml-2 rounded border-2 border-slate-400">
               <CardCvc />
             </div>
           </div>
