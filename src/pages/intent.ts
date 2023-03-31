@@ -9,14 +9,14 @@ const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API,{
 export const post: APIRoute = async function get ({params, request}) {
 
   const body = await request.json()
-  console.log(body)
 
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: body.amount,
     currency: 'usd',
     automatic_payment_methods: { enabled: true },
-    receipt_email: body.receipt_email
+    receipt_email: body.receipt_email,
+    description: "Untimed Online CAT with Practice Test x" + body.quantity,
   })
 
   return new Response( JSON.stringify({clientSecret: paymentIntent.client_secret}),{

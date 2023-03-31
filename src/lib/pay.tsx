@@ -96,7 +96,7 @@ function CheckoutForm() {
     const a = await fetch('/intent', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email)}),
+      body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
     })
     const b = await a.json();
     const result = await stripe().confirmCardPayment(b.clientSecret, {
