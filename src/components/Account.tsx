@@ -1,6 +1,6 @@
 import type { AuthSession } from '@supabase/supabase-js'
 import { Component, createEffect, createSignal } from 'solid-js'
-import { supabase } from './SupabaseClient'
+import  supabase from './SupabaseClient'
 
 interface Props {
   session: AuthSession;
