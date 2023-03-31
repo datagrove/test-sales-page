@@ -40,9 +40,17 @@ export const OrderForm: Component = () => {
 
   }
 
-  // const addStudentEnabaled = () => {
-  //   if()
-  // }
+  console.log(order())
+
+  const addStudentEnabled = () => {
+    let result = false
+    order().student.map((student)=>{
+      if(student.first === '' || student.last === '' || student.grade === ''){
+        result = true
+      }
+    })
+    return result
+}
   
 
   return (
@@ -104,20 +112,24 @@ export const OrderForm: Component = () => {
             }}
             </For>
           </div>
+          <div class={`flex justify-center text-xl font-bold ${addStudentEnabled()=== true ? "": "hidden"}`}>
+            <p>All fields are required.</p>
+          </div>
+          <div class="flex justify-end mx-6">
           <button 
-            class="flex w-full justify-center"
-            disabled={ false } 
+            class="flex justify-center bg-emerald-950 rounded-full shadow px-4 py-2 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
+            disabled={ addStudentEnabled()} 
             onClick={addStudent}
 
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              fill="#000000" 
+              // fill="#000000" 
               height="24px" 
               width="24px" 
               version="1.1" viewBox="0 0 512 512" 
               enable-background="new 0 0 512 512"
-              class="dark:fill-slate-400"
+              class="dark:fill-white"
             >
               <g>
                 <g>
@@ -128,17 +140,19 @@ export const OrderForm: Component = () => {
             </svg>
             <p class="px-2">Add Student</p>
           </button>
+          </div>
           <br />
         </div>
         <div class="flex justify-center mt-4">
+        <a href='/pay'> 
           <button 
             id="checkout"
-            class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400"
+            disabled={addStudentEnabled()}
+            class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
           >
-            <a href='/pay'> 
-              Checkout
-            </a>
+            Checkout
           </button>
+          </a>
         </div>
     </form>
 

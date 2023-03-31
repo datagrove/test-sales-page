@@ -9,6 +9,9 @@ module.exports = {
 		}
 	},
 	},
+	variants: {
+		fill: ['disabled', 'hover', 'focus'],
+	},
 	plugins: [],
 	darkMode: 'class',
 }
