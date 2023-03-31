@@ -17,8 +17,6 @@ export const PayForm: Component<{}> = (props) => {
   onMount(async () => {
     const result = await loadStripe(api_key)
     setStripe(result as any)
-    console.log("order type: ", typeof(order))
-    console.log("orderArray:", orderArray)
   })
 
   return (
@@ -129,7 +127,7 @@ function CheckoutForm() {
       <div>{error()}</div> */}
       
     <form onsubmit={submit} >
-      <div class="flex flex-col items-center justify-center">
+      <div class="flex flex-col items-center justify-center mb-24">
         <div class="bg-gray-200 dark:bg-black w-96 mb-4">
           <div class="p-2 my-2 rounded border-2 border-slate-400">
             <CardNumber />

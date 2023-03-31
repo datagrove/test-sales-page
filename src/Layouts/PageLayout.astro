@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import { headerData } from '../head_foot_data'
+import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout>
@@ -11,4 +12,8 @@ import { headerData } from '../head_foot_data'
     <main>
       <slot />
     </main>
-  </BaseLayout>
+
+    <slot name="footer">
+      <Footer />
+    </slot>
+</BaseLayout>

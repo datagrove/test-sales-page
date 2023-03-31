@@ -46,7 +46,7 @@ export const OrderForm: Component = () => {
   
 
   return (
-    <div aria-live="polite" class="dark:text-gray-400 align-center flex justify-center">
+    <div aria-live="polite" class="dark:text-gray-400 align-center flex justify-center mb-24">
       <form 
         id="order-form"
         class="w-full md:w-2/3 md:max-w-1/2"
