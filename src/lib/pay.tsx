@@ -23,7 +23,7 @@ export const PayForm: Component<{}> = (props) => {
     <div>
       <div class="my-4 flex flex-col justify-center items-center mb-10">
         <h2 class="text-2xl font-bold">Order Summary</h2>
-        <div class="flex flex-col w-96 mt-4 dark:text-slate-400">
+        <div class="flex flex-col w-80 mt-4 dark:text-slate-400">
           {/* Amount: {n} tests * 20 = ${n*20} */}
 
           { 
@@ -128,7 +128,7 @@ function CheckoutForm() {
       
     <form onsubmit={submit} >
       <div class="flex flex-col items-center justify-center mb-24">
-        <div class="bg-gray-200 dark:bg-black w-96 mb-4">
+        <div class="bg-gray-200 dark:bg-black w-80 mb-4">
           <div class="p-2 my-2 rounded border-2 border-slate-400">
             <CardNumber />
           </div>
@@ -143,7 +143,7 @@ function CheckoutForm() {
             </div>
           </div>
         </div>
-        <button class="bg-green-700 rounded-full shadow px-4 py-2 w-96 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
+        <button class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
           Pay
         </button>
       </div>
