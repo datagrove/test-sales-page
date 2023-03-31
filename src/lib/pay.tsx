@@ -91,11 +91,12 @@ function CheckoutForm() {
     const n = order.student.length
     const price = 20 * 100
     const orderTotal = n * price
+    const email = order.email
 
     const a = await fetch('/intent', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal)}),
+      body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email)}),
     })
     const b = await a.json();
     const result = await stripe().confirmCardPayment(b.clientSecret, {
