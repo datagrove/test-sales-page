@@ -133,7 +133,7 @@ export const OrderForm: Component = () => {
         <div class="flex justify-center mt-4">
           <button 
             id="checkout"
-            class="bg-green-700 rounded-full shadow px-4 py-2 w-full text-white justify-center border border-green-900 dark:border-slate-400"
+            class="bg-green-700 rounded-full shadow px-4 py-2 w-96 text-white justify-center border border-green-900 dark:border-slate-400"
           >
             <a href='/pay'> 
               Checkout
