@@ -90,7 +90,7 @@ export const OrderForm: Component = () => {
             <input
               id="email"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 last:w-full"
-              type="text"
+              type="email"
               required
               placeholder='Email'
               value={order().email}
