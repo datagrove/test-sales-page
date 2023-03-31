@@ -44,7 +44,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
           </div>
           <div class="p-3">
             {/* <label for="studentGrade" class="pr-4">Student Grade</label> */}
-            <input
+            {/* <input
               id="studentGrade"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
               type="number"
@@ -54,21 +54,28 @@ const StudentForm: Component<Props> = (props: Props ) => {
               min = "2"
               max = "12"
               onChange={(e) => update({grade: e.currentTarget.value})}
-            />
-
-            {/* <select
+            /> */}
+            <label class="sr-only">Select Grade</label>
+            <select
               name="grades" 
               id="studentGrade"
+              class="p-1 rounded dark:bg-black dark:border dark:border-slate-400"
               value={props.student().grade}
               onChange={(e) => update({ grade: e.currentTarget.value })}
             >
-              <option value="select">Grade</option>
+              <option selected disabled hidden value="">Select Grade</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
               <option value="6">6</option>
-            </select> */}
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
 
             {/* <p>Current grade is: { props.student().grade }</p> */}
 
