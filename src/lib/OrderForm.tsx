@@ -25,8 +25,9 @@ export const OrderForm: Component = () => {
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
+    console.log("order from update function: ", order())
     window.localStorage.order = JSON.stringify(order());
-    console.log(window.localStorage.order)
+    console.log("window.localStorage in OrderForm: ", window.localStorage.order)
   }
   const addStudent = ()=>{
     update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
@@ -40,10 +41,11 @@ export const OrderForm: Component = () => {
 
   }
 
-  console.log(order())
+  // console.log(order())
 
   const addStudentEnabled = () => {
     let result = false
+    console.log("order().student in OrderForm: ", order().student)
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
