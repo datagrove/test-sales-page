@@ -81,9 +81,9 @@ const StudentForm: Component<Props> = (props: Props ) => {
             </select>
 
             
-            <p>First Name: { props.student().first }</p>
+            {/* <p>First Name: { props.student().first }</p>
             <p>Last Name: { props.student().last }</p>
-            <p>Current grade is: { props.student().grade }</p>
+            <p>Current grade is: { props.student().grade }</p> */}
 
           </div>
           <button 

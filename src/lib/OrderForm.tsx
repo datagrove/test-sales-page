@@ -19,15 +19,14 @@ export const OrderForm: Component = () => {
   onMount(()=>{
     if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
-      console.log("loaded ", a)
+      // console.log("loaded ", a)
       setOrder(a)
     }
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
-    console.log("order from update function: ", order())
-    window.localStorage.order = JSON.stringify(order());
-    console.log("window.localStorage in OrderForm: ", window.localStorage.order)
+    // console.log("order from update function: ", order())
+    // console.log("window.localStorage in OrderForm: ", window.localStorage.order)
   }
   const addStudent = ()=>{
     update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
@@ -45,13 +44,22 @@ export const OrderForm: Component = () => {
 
   const addStudentEnabled = () => {
     let result = false
-    console.log("order().student in OrderForm: ", order().student)
+    // console.log("order().student in OrderForm: ", order().student)
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
       }
     })
     return result
+}
+
+const goToPay = () => {
+  // alert("In the goToPay function")
+  // document.location.href="pay.tsx"
+  // window.open("/pay")
+  // window.location.href=("/pay")
+  // window.location.hostname=("localhost")
+  // window.location.href="/pay"
 }
   
 
@@ -146,15 +154,16 @@ export const OrderForm: Component = () => {
           <br />
         </div>
         <div class="flex justify-center mt-4">
-        <a href='/pay'> 
+        {/* <a href='/pay'>  */}
           <button 
             id="checkout"
             disabled={addStudentEnabled()}
             class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
+            onclick={ goToPay }
           >
             Checkout
           </button>
-          </a>
+          {/* </a> */}
         </div>
     </form>
 
