@@ -53,7 +53,9 @@ export const OrderForm: Component = () => {
     return result
 }
 
-const goToPay = () => {
+const checkoutBtn = (e: any) => {
+  location.href="/pay"
+  e.preventDefault()
   // alert("In the goToPay function")
   // document.location.href="pay.tsx"
   // window.open("/pay")
@@ -159,7 +161,7 @@ const goToPay = () => {
             id="checkout"
             disabled={addStudentEnabled()}
             class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
-            onclick={ goToPay }
+            onclick={ checkoutBtn }
           >
             Checkout
           </button>
