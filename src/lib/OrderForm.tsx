@@ -17,16 +17,16 @@ export const OrderForm: Component = () => {
   const [order, setOrder] = createSignal<Order>(loadCart())
 
   onMount(()=>{
-    if (window.localStorage.order) {
+      if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
-      // console.log("loaded ", a)
+      console.log("loaded ", a)
       setOrder(a)
     }
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
     // console.log("order from update function: ", order())
-    // console.log("window.localStorage in OrderForm: ", window.localStorage.order)
+    console.log("window.localStorage in OrderForm: ", window.localStorage.order)
   }
   const addStudent = ()=>{
     update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
@@ -35,9 +35,6 @@ export const OrderForm: Component = () => {
     const o = [ ...order().student]
     o.splice(i,1)
     update({student: o})
-  }
-  const checkout = () =>{
-
   }
 
   // console.log(order())
@@ -53,14 +50,13 @@ export const OrderForm: Component = () => {
     return result
 }
 
-const checkoutBtn = (e: any) => {
+const checkout = (e: any) => {
   location.href="/pay"
   e.preventDefault()
   // alert("In the goToPay function")
   // document.location.href="pay.tsx"
   // window.open("/pay")
   // window.location.href=("/pay")
-  // window.location.hostname=("localhost")
   // window.location.href="/pay"
 }
   
@@ -161,7 +157,7 @@ const checkoutBtn = (e: any) => {
             id="checkout"
             disabled={addStudentEnabled()}
             class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
-            onclick={ checkoutBtn }
+            onclick={ checkout }
           >
             Checkout
           </button>
