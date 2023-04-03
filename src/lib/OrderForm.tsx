@@ -17,7 +17,7 @@ export const OrderForm: Component = () => {
   const [order, setOrder] = createSignal<Order>(loadCart())
 
   onMount(()=>{
-    if (window.localStorage.order) {
+      if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
       console.log("loaded ", a)
       setOrder(a)
@@ -36,20 +36,28 @@ export const OrderForm: Component = () => {
     o.splice(i,1)
     update({student: o})
   }
-  const checkout = () =>{
 
-  }
-
-  console.log(order())
+  // console.log(order())
 
   const addStudentEnabled = () => {
     let result = false
+    // console.log("order().student in OrderForm: ", order().student)
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
       }
     })
     return result
+}
+
+const checkout = (e: any) => {
+  location.href="/pay"
+  e.preventDefault()
+  // alert("In the goToPay function")
+  // document.location.href="pay.tsx"
+  // window.open("/pay")
+  // window.location.href=("/pay")
+  // window.location.href="/pay"
 }
   
 
@@ -144,15 +152,16 @@ export const OrderForm: Component = () => {
           <br />
         </div>
         <div class="flex justify-center mt-4">
-        <a href='/pay'> 
+        {/* <a href='/pay'>  */}
           <button 
             id="checkout"
             disabled={addStudentEnabled()}
             class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
+            onclick={ checkout }
           >
             Checkout
           </button>
-          </a>
+          {/* </a> */}
         </div>
     </form>
 

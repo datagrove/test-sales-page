@@ -5,7 +5,7 @@ interface Props {
     onRemove: () => void
     setStudent: (s: Student)=>void
     student: ()=>Student
-  }
+}
 
 const StudentForm: Component<Props> = (props: Props ) => {
     const update = (p: Partial<Student>) => {
@@ -14,6 +14,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
         ...p
       })
     }
+
     return (
       <div aria-live="polite" class="flex flex-col dark:text-gray-400 align-center my-5 border-2 border-gray-300 dark:border-slate-400 m-4 p-4 rounded shadow-xl">
           <div class="p-3">
@@ -21,11 +22,10 @@ const StudentForm: Component<Props> = (props: Props ) => {
             <input
               id="studentFirstName"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
-              placeholder='Student First Name'
+              placeholder="Student First Name"
               type="text"
               required
               value={props.student().first}
-              
               onChange={(e) => update( { first: e.currentTarget.value})}
             />
           </div>
@@ -43,8 +43,8 @@ const StudentForm: Component<Props> = (props: Props ) => {
             />
           </div>
           <div class="p-3">
-            {/* <label for="studentGrade" class="pr-4">Student Grade</label> */}
-            {/* <input
+            {/* <label for="studentGrade" class="pr-4 sr-only">Student Grade</label>
+            <input
               id="studentGrade"
               class="pl-1 border-b-2 border-gray-500 bg-transparent placeholder-gray-400 dark:placeholder-gray-500 w-full"
               type="number"
@@ -78,7 +78,10 @@ const StudentForm: Component<Props> = (props: Props ) => {
               <option value="12">12</option>
             </select>
 
-            {/* <p>Current grade is: { props.student().grade }</p> */}
+            
+            {/* <p>First Name: { props.student().first }</p>
+            <p>Last Name: { props.student().last }</p>
+            <p>Current grade is: { props.student().grade }</p> */}
 
           </div>
           <button 
