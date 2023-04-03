@@ -1,9 +1,9 @@
 const CONFIG = {
     name: 'Datagrove Test Ordering',
   
-    title: 'DG Test Ordering',
+    title: 'Datagrove/Pawpaw CAT',
     description:
-      'Site for ordering CAT tests.',
+      'Site for ordering California Achievement tests.',
   
     defaultTheme: 'system', // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
   
