@@ -58,6 +58,21 @@ export const PayForm: Component<{}> = (props) => {
           }
         </div>
 
+        <div class="flex justify-end w-80 mt-2 mb-8">
+
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="dark:fill-slate-400 mx-2"
+            viewBox="0 0 24 24" 
+            width="24px" 
+            height="24px">
+            <path d="M18.4,4.4l1.2,1.2L6.2,19H5v-1.2L18.4,4.4 M18.4,2c-0.3,0-0.5,0.1-0.7,0.3L3,17v4h4L21.7,6.3c0.4-0.4,0.4-1,0-1.4l-2.6-2.6 C18.9,2.1,18.7,2,18.4,2L18.4,2z"/>
+            <path d="M15.8 4.3H17.8V9.2H15.8z" transform="rotate(-45.001 16.75 6.75)"/>
+          </svg>
+
+          <p class="text-end">Edit Order</p>
+        </div>
+
         <div class="flex">
           <p class="font-bold text-xl">Total: ${ n*20 }.00</p>
         </div>
