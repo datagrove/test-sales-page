@@ -15,8 +15,6 @@ const StudentForm: Component<Props> = (props: Props ) => {
       })
     }
 
-    console.log("props in student: ", props.student())
-
     return (
       <div aria-live="polite" class="flex flex-col dark:text-gray-400 align-center my-5 border-2 border-gray-300 dark:border-slate-400 m-4 p-4 rounded shadow-xl">
           <div class="p-3">
