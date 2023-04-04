@@ -93,7 +93,7 @@ function CheckoutForm() {
     const orderTotal = n * price
     const email = order.email
 
-    const a = await fetch('/intent', {
+    const a = await fetch('/checkout', {
       method: 'POST',
       cache: "no-cache", 
       body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
@@ -127,8 +127,8 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-    <form onsubmit={submit} >
-      <div class="flex flex-col items-center justify-center mb-24">
+    <form action="/checkout" >
+      {/* <div class="flex flex-col items-center justify-center mb-24">
         <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
           <div class="p-2 my-4 rounded border-2 border-slate-400">
             <CardNumber />
@@ -143,11 +143,11 @@ function CheckoutForm() {
               <CardCvc />
             </div>
           </div>
-        </div>
-        <button class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
+        </div> */}
+        <button type="submit" class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
           Pay
         </button>
-      </div>
+      {/* </div> */}
     </form>
     </div>
   )

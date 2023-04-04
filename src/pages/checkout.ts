@@ -24,12 +24,16 @@ export const post: APIRoute = async function get ({params, request}:any) {
     automatic_tax: {enabled: true},
   })
 
-  await get.redirect(303, session.url)
-
-  return new Response( JSON.stringify({clientSecret: paymentIntent.client_secret}),{
-    status: 200,
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
+  
+  if(!session.url){
+    return new Response(JSON.stringify({error: 'Something went wrong'}),{
+      status: 500,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
+  console.log(Response.redirect(session.url, 303))
+  return Response.redirect(session.url, 303)
+  
 }
