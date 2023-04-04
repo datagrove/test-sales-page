@@ -62,10 +62,10 @@ const checkout = (e: any) => {
   
 
   return (
-    <div aria-live="polite" class="dark:text-gray-400 align-center flex justify-center mb-24">
+    <div aria-live="polite" class="dark:text-gray-400 align-center flex justify-center mb-36">
       <form 
         id="order-form"
-        class="w-full md:w-2/3 md:max-w-1/2"
+        class="w-96"
       >
         <div class="mb-6">
           <h3 class="text-xl">Your Information</h3>
@@ -137,7 +137,7 @@ const checkout = (e: any) => {
               width="24px" 
               version="1.1" viewBox="0 0 512 512" 
               enable-background="new 0 0 512 512"
-              class="dark:fill-white"
+              class="fill-slate-200 dark:fill-white"
             >
               <g>
                 <g>
