@@ -51,13 +51,9 @@ export const OrderForm: Component = () => {
 }
 
 const checkout = (e: any) => {
-  location.href="/pay"
   e.preventDefault()
-  // alert("In the goToPay function")
-  // document.location.href="pay.tsx"
-  // window.open("/pay")
-  // window.location.href=("/pay")
-  // window.location.href="/pay"
+  console.log("what is this supposed to do?")
+
 }
   
 

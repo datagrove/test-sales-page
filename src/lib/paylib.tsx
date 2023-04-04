@@ -98,9 +98,10 @@ function CheckoutForm() {
       cache: "no-cache", 
       body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
     })
-
-    const b = await a.json();
-    console.log(b)
+    console.log(a)
+    const b = await a.json() as {
+      url: string
+    }
     location.href = b.url;
     // const result = await stripe().confirmCardPayment(b.clientSecret, {
     //   payment_method: {

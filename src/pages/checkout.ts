@@ -9,21 +9,37 @@ const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
 export const post: APIRoute = async function get({ params, request }: any) {
 
   const body = await request.json()
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: 'price_1MoBVGBRZLMDvS4RGtPKuq2k',
-        quantity: body.quantity,
-      },
-    ],
-    mode: 'payment',
-    success_url: `/thankyou`,
-    cancel_url: `/pay`,
-    automatic_tax: { enabled: true },
-  })
+
+  let url = "https://cancel"
+  let error = ""
+  try {
+
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price: 'price_1MoBVGBRZLMDvS4RGtPKuq2k',
+          quantity: body.quantity,
+        },
+      ],
+      mode: 'payment',
+      success_url: `http://localhost:3000/thankyou`,
+      cancel_url: `http://localhost:3000/cancel`,
+      automatic_tax: { enabled: true },
+    })
+    url = session.url ?? "https://localhost:3000/cancel"
+  } catch (e: any) {
+    console.log(stripe)
+    error = JSON.stringify(e)
+  }
 
   return new Response(JSON.stringify({
-    url: session.url
-  }))
+    url: url,
+    error: error
+  }),{
+    status: 200,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
 
 }
