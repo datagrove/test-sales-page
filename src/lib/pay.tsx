@@ -98,7 +98,10 @@ function CheckoutForm() {
       cache: "no-cache", 
       body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
     })
+
     const b = await a.json();
+    console.log(b)
+
     const result = await stripe().confirmCardPayment(b.clientSecret, {
       payment_method: {
         card: elements().getElement(CardNumber)!,
@@ -127,7 +130,7 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-    <form action="/checkout" >
+    <form action={b} >
       {/* <div class="flex flex-col items-center justify-center mb-24">
         <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
           <div class="p-2 my-4 rounded border-2 border-slate-400">
