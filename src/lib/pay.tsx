@@ -100,6 +100,10 @@ function CheckoutForm() {
     })
 
     const b = await a.json();
+
+    if (b !== null){
+      location.href = b.session.url;
+    }
     console.log(b)
 
     const result = await stripe().confirmCardPayment(b.clientSecret, {
@@ -130,7 +134,7 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-    <form action={b} >
+    <form>
       {/* <div class="flex flex-col items-center justify-center mb-24">
         <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
           <div class="p-2 my-4 rounded border-2 border-slate-400">

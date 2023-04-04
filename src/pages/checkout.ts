@@ -33,7 +33,7 @@ export const post: APIRoute = async function get ({params, request}:any) {
       }
     })
   }
-  console.log((session.url))
-  return Response.redirect(session.url, 303)
+  
+  return new Response(session.url)
   
 }
