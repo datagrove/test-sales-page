@@ -100,29 +100,25 @@ function CheckoutForm() {
     })
 
     const b = await a.json();
-
-    if (b !== null){
-      location.href = b.session.url;
-    }
     console.log(b)
+    location.href = b.url;
+    // const result = await stripe().confirmCardPayment(b.clientSecret, {
+    //   payment_method: {
+    //     card: elements().getElement(CardNumber)!,
+    //     billing_details: {},
+    //   },
+    // })
 
-    const result = await stripe().confirmCardPayment(b.clientSecret, {
-      payment_method: {
-        card: elements().getElement(CardNumber)!,
-        billing_details: {},
-      },
-    })
-
-    if (!result.error) {
-      const response = await fetch("/supabaseSubmit", {
-        method: "POST",
-        body: JSON.stringify(loadCart()),
-      });
-      location.href = '/thankyou'
-    } else {
-      setPaying(false)
-      setError(result.error.message??"unknown error")
-    }
+    // if (!result.error) {
+    //   const response = await fetch("/supabaseSubmit", {
+    //     method: "POST",
+    //     body: JSON.stringify(loadCart()),
+    //   });
+    //   location.href = '/thankyou'
+    // } else {
+    //   setPaying(false)
+    //   setError(result.error.message??"unknown error")
+    // }
   }
   return (
     <div class="dark:text-white">
@@ -134,7 +130,7 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-    <form>
+
       {/* <div class="flex flex-col items-center justify-center mb-24">
         <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
           <div class="p-2 my-4 rounded border-2 border-slate-400">
@@ -151,11 +147,11 @@ function CheckoutForm() {
             </div>
           </div>
         </div> */}
-        <button type="submit" class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
+        <button onClick={submit} class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
           Pay
         </button>
       {/* </div> */}
-    </form>
+    
     </div>
   )
 }
