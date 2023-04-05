@@ -58,11 +58,11 @@ export const PayForm: Component<{}> = (props) => {
           }
         </div>
 
-        <div class="w-80 mt-2 mb-8">
-          <a href="/order" class="flex justify-end">
+        <div class="w-80 mt-2 mb-8 flex justify-end">
+          <a href="/order" class="flex justify-end w-36">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              class="dark:fill-slate-400 mx-2"
+              class="dark:fill-slate-400 mr-2"
               viewBox="0 0 24 24" 
               width="24px" 
               height="24px">
