@@ -42,15 +42,22 @@ export const OrderForm: Component = () => {
   const addStudentEnabled = () => {
     let result = false
     // console.log("order().student in OrderForm: ", order().student)
-    // console.log("order: ", order())
+    console.log("order: ", order())
     if(order().first === '' || order().last === '' || order().email === '') {
       result = true;
     }
+
+    // if(order().student.length <= 0) {
+    //   result = true;
+    // }
+
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
       }
     }) 
+
+    // result = false;
     
     return result
 }
@@ -121,6 +128,7 @@ const checkout = (e: any) => {
                 const o = order().student;
                 o[i()] = s
                 update({student: o})
+                console.log("student in for each:", o)
               }} onRemove={()=>{remove(i())}}/>
             }}
             </For>
