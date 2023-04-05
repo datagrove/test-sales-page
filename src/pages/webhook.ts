@@ -10,7 +10,7 @@ const endpointSecret = import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 export const post: APIRoute = async function get({ params, request }: any) {
 
-  const body = await request.json()
+  const body = await request.body;
 
   const sig = request.headers['stripe-signature']
 
@@ -26,6 +26,8 @@ export const post: APIRoute = async function get({ params, request }: any) {
       { status: 400 }
     );
   }
+
+  console.log(`Event Type: ${event.type}`)
 
   switch (event.type){
     case 'checkout.session.completed':
