@@ -116,7 +116,7 @@ function CheckoutForm() {
     // }
   }
   return (
-    <div class="dark:text-white">
+    <div class="dark:text-white flex justify-center">
       
       {/* <div>You can use these values to test</div>
       <div>Your public stripe key is {api_key}</div>
