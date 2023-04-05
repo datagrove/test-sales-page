@@ -1,7 +1,7 @@
 import { Component, Show, createSignal, onMount, For } from 'solid-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
-import { Order, loadCart } from './data'
+import {  Elements, useStripe, useStripeElements } from 'solid-stripe'
+import { loadCart } from './data'
 
 
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
@@ -103,12 +103,6 @@ function CheckoutForm() {
       url: string
     }
     location.href = b.url;
-    // const result = await stripe().confirmCardPayment(b.clientSecret, {
-    //   payment_method: {
-    //     card: elements().getElement(CardNumber)!,
-    //     billing_details: {},
-    //   },
-    // })
 
     // if (!result.error) {
     //   const response = await fetch("/supabaseSubmit", {
@@ -131,28 +125,9 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-
-      {/* <div class="flex flex-col items-center justify-center mb-24">
-        <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
-          <div class="p-2 my-4 rounded border-2 border-slate-400">
-            <CardNumber />
-          </div>
-          
-          <div class="flex">
-            <div class="p-2 my-4 w-1/2 mr-2 rounded border-2 border-slate-400">
-              <CardExpiry />
-            </div>
-
-            <div class="p-2 my-4 w-1/2 ml-2 rounded border-2 border-slate-400">
-              <CardCvc />
-            </div>
-          </div>
-        </div> */}
         <button onClick={submit} class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
           Pay
         </button>
-      {/* </div> */}
-    
     </div>
   )
 }

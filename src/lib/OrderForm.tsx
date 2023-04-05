@@ -37,11 +37,9 @@ export const OrderForm: Component = () => {
     update({student: o})
   }
 
-  // console.log(order())
-
   const addStudentEnabled = () => {
     let result = false
-    // console.log("order().student in OrderForm: ", order().student)
+
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
@@ -52,7 +50,7 @@ export const OrderForm: Component = () => {
 
 const checkout = (e: any) => {
   e.preventDefault()
-  console.log("what is this supposed to do?")
+  location.href="/pay"
 
 }
   
@@ -102,7 +100,7 @@ const checkout = (e: any) => {
             />
           </div>
         </div>
-        {/* <hr /> */}
+
         <div class="mb-6">
           <h3 class="text-xl">Your Student(s)</h3>
           <div class="m-2">
@@ -148,7 +146,7 @@ const checkout = (e: any) => {
           <br />
         </div>
         <div class="flex justify-center mt-4">
-        {/* <a href='/pay'>  */}
+
           <button 
             id="checkout"
             disabled={addStudentEnabled()}
@@ -157,7 +155,7 @@ const checkout = (e: any) => {
           >
             Checkout
           </button>
-          {/* </a> */}
+
         </div>
     </form>
 
