@@ -98,7 +98,7 @@ function CheckoutForm() {
       cache: "no-cache", 
       body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
     })
-    console.log(a)
+    // console.log(a)
     const b = await a.json() as {
       url: string
     }

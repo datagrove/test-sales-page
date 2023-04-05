@@ -19,14 +19,14 @@ export const OrderForm: Component = () => {
   onMount(()=>{
       if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
-      console.log("loaded ", a)
+      // console.log("loaded ", a)
       setOrder(a)
     }
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
     window.localStorage.order = JSON.stringify(order());
-    console.log(window.localStorage.order)
+    // console.log(window.localStorage.order)
   }
   const addStudent = ()=>{
     update( {student: [...order().student, {first: '', last: '', grade: ''} ]})

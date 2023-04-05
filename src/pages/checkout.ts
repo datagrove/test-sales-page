@@ -28,7 +28,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
     })
     url = session.url ?? "https://localhost:3000/cancel"
   } catch (e: any) {
-    console.log(stripe)
+    // console.log(stripe)
     error = JSON.stringify(e)
   }
 
