@@ -1,7 +1,7 @@
 const CONFIG = {
     name: 'Datagrove Test Ordering',
   
-    title: 'Datagrove/Pawpaw CAT',
+    title: 'Datagrove | Pawpaw CAT',
     description:
       'Site for ordering California Achievement tests.',
   

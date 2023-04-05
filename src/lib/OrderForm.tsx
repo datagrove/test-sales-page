@@ -42,11 +42,16 @@ export const OrderForm: Component = () => {
   const addStudentEnabled = () => {
     let result = false
     // console.log("order().student in OrderForm: ", order().student)
+    // console.log("order: ", order())
+    if(order().first === '' || order().last === '' || order().email === '') {
+      result = true;
+    }
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
       }
-    })
+    }) 
+    
     return result
 }
 
@@ -125,7 +130,7 @@ const checkout = (e: any) => {
           </div>
           <div class="flex justify-end mx-6">
           <button 
-            class="flex justify-center bg-emerald-950 rounded-full shadow px-4 py-2 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
+            class="flex justify-center bg-emerald-950 rounded-full shadow px-4 py-2 mt-4 md:mt-8 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
             disabled={ addStudentEnabled()} 
             onClick={addStudent}
 
