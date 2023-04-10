@@ -10,16 +10,12 @@ const endpointSecret = import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 export const post: APIRoute = async function get({ params, request }: any) {
 
-  const buffers = [];
+  console.log("Start")
 
-  for await (const data of request.body){
-    buffers.push(data);
-    console.log(buffers)
-  }
-  
-  const body = Buffer.concat(buffers);
+  const body = request.body.getReader();
+  console.log("Body: "+ body )
 
-  const sig = request.headers.get['stripe-signature'] as string;
+  const sig = request.headers['STRIPE_SIGNATURE'];
 
 
   try {
