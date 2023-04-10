@@ -96,7 +96,7 @@ function CheckoutForm() {
     const a = await fetch('/checkout', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
+      body: JSON.stringify({"amount":Number(orderTotal), "email":String(email), "quantity":String(n.toString())}),
     })
     // console.log(a)
     const b = await a.json() as {

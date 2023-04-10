@@ -15,6 +15,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   try {
 
     const session = await stripe.checkout.sessions.create({
+      customer_email: body.email,
       line_items: [
         {
           price: 'price_1MoBVGBRZLMDvS4RGtPKuq2k',
