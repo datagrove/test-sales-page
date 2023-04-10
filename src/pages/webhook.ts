@@ -10,36 +10,38 @@ const endpointSecret = import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 export const post: APIRoute = async function get({ params, request }: any) {
 
-  const body = await request.body;
+  const buffers = [];
 
-  const sig = request.headers['stripe-signature']
+  for await (const data of request.body){
+    buffers.push(data);
+    console.log(buffers)
+  }
+  
+  const body = Buffer.concat(buffers);
 
-  let event;
+  const sig = request.headers.get['stripe-signature'] as string;
+
 
   try {
-    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret)
+    const event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
+    console.log(`Event Type: ${event.type}`)
   } catch (err:any) {
-    return new Response(
-      JSON.stringify({
-        message: `Webhook Error: ${err.message}`,
-      }),
-      { status: 400 }
-    );
+    console.log(err);
   }
 
-  console.log(`Event Type: ${event.type}`)
+//   console.log(`Event Type: ${event.type}`)
 
-  switch (event.type){
-    case 'checkout.session.completed':
-      const session:any = event.data.object;
-      if (session.payment_status === 'paid'){
-        console.log(session)
-      }
-      break;
+//   switch (event.type){
+//     case 'checkout.session.completed':
+//       const session:any = event.data.object;
+//       if (session.payment_status === 'paid'){
+//         console.log(session)
+//       }
+//       break;
 
-    default:
-      console.log(`Unhandled event type ${event.type}`)
-  }
+//     default:
+//       console.log(`Unhandled event type ${event.type}`)
+//   }
 
   return new Response(
     JSON.stringify({
