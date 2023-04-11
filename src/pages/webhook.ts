@@ -2,7 +2,7 @@
 import Stripe from 'stripe'
 import type { APIRoute } from 'astro';
 import { loadCart } from '../lib/data'
-import  {DatabaseSubmit} from '../lib/OrderSubmit'
+// import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
 const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
@@ -49,7 +49,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   switch (event.type) {
     case 'charge.succeeded': {
-      DatabaseSubmit;
+      console.log("Charge Succeeded");
       break;
     }
     default:
