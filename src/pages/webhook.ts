@@ -32,7 +32,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   const sig = request.headers.get('stripe-signature');
 
-  let event: any;
+  let event: Stripe.Event|undefined;
 
   try {
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
@@ -49,7 +49,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   switch (event.type) {
     case 'charge.succeeded': {
-      console.log("Charge Succeeded");
+      console.log("Charge Succeeded",event);
       break;
     }
     default:
