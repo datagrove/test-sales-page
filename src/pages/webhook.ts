@@ -1,16 +1,25 @@
 
 import Stripe from 'stripe'
 import type { APIRoute } from 'astro';
+import { loadCart } from '../lib/data'
+import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
 const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret:string = import.meta.env.PRIVATE_STRIPE_ENDPOINT
+const endpointSecret: string = import.meta.env.PRIVATE_STRIPE_ENDPOINT
+
+// console.log(JSON.stringify(loadCart()))
+
+// const database = async () => {await fetch('/supabaseSubmit', {
+//   method: "POST",
+//   body: JSON.stringify(loadCart()),
+// })};
 
 export const post: APIRoute = async function get({ params, request }: any) {
 
-  console.log("Request Header"+ (request.headers.get("stripe-signature")))
+  // console.log("Request Header" + (request.headers.get("stripe-signature")))
   // const body = await request.body.getReader().read();
   // console.log("Body: " + JSON.stringify(body))
 
@@ -23,26 +32,29 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   const sig = request.headers.get('stripe-signature');
 
+  let event: any;
+
   try {
-    const event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
     console.log(`Event Type: ${event.type}`)
   } catch (err: any) {
-    console.log(err);
+    console.log(err.type);
   }
 
   //   console.log(`Event Type: ${event.type}`)
 
-  //   switch (event.type){
-  //     case 'checkout.session.completed':
-  //       const session:any = event.data.object;
-  //       if (session.payment_status === 'paid'){
-  //         console.log(session)
-  //       }
-  //       break;
+  if (event === undefined) {
+    console.log("Event is undefined")
+  } else {
 
-  //     default:
-  //       console.log(`Unhandled event type ${event.type}`)
-  //   }
+  switch (event.type) {
+    case 'charge.succeeded': {
+      DatabaseSubmit;
+      break;
+    }
+    default:
+      console.log(`Unhandled event type ${event.type}`)
+  }
 
   return new Response(
     JSON.stringify({
@@ -50,4 +62,11 @@ export const post: APIRoute = async function get({ params, request }: any) {
     }),
     { status: 200 }
   );
+}
+return new Response(
+  JSON.stringify({
+    message: `Failure`,
+  }),
+  { status: 400 }
+);
 }

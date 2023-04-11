@@ -1,15 +1,14 @@
 ---
 import { SITE } from "../config";
 import PageLayout from '../Layouts/PageLayout.astro';
-import OrderSubmit from '../lib/OrderSubmit'
+import { DatabaseSubmit} from '../lib/OrderSubmit'
 import { Order, loadCart } from '../lib/data'
-import Webhook from '../lib/Webhook'
+// import Webhook from '../lib/Webhook'
 
 ---
 
 <PageLayout>
-	<Webhook client:only/>
-	<!-- <OrderSubmit client:only/> -->
+	<DatabaseSubmit client:only/>
 	<!-- <Webhook client:only/> -->
 	<!-- <h1>{SITE.title}</h1> -->
 	<div class="flex flex-col items-center mt-16">
