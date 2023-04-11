@@ -10,14 +10,21 @@ const endpointSecret:string = import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 export const post: APIRoute = async function get({ params, request }: any) {
 
-  const body = await request.body.getReader().read();
-  console.log("Body: " + JSON.stringify(body))
+  console.log("Request Header"+ (request.headers.get("stripe-signature")))
+  // const body = await request.body.getReader().read();
+  // console.log("Body: " + JSON.stringify(body))
 
-  const sig = request.headers['STRIPE_SIGNATURE'];
+  const buffers = [];
+  for await (const chunk of request.body) {
+    buffers.push(chunk);
+  }
 
+  const body = Buffer.concat(buffers);
+
+  const sig = request.headers.get('stripe-signature');
 
   try {
-    const event = stripe.webhooks.constructEvent(await request.body, sig, endpointSecret)
+    const event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
     console.log(`Event Type: ${event.type}`)
   } catch (err: any) {
     console.log(err);
