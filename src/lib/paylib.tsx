@@ -5,7 +5,7 @@ import { loadCart } from './data'
 
 
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
-const api_key = import.meta.env.PUBLIC_STRIPE_API
+const api_key=() => import.meta.env.PUBLIC_STRIPE_API
 export const PayForm: Component<{}> = (props) => {
   const [stripe, setStripe] = createSignal(null)
   const otxt = window.localStorage.order
@@ -15,7 +15,7 @@ export const PayForm: Component<{}> = (props) => {
   const price = 20 * 100
 
   onMount(async () => {
-    const result = await loadStripe(api_key)
+    const result = await loadStripe(api_key())
     setStripe(result as any)
   })
 
