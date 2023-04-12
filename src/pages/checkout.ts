@@ -2,7 +2,7 @@
 import Stripe from 'stripe'
 import type { APIRoute } from 'astro';
 
-const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
+const stripe=() => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
@@ -14,7 +14,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   let error = ""
   try {
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripe().checkout.sessions.create({
       customer_email: body.email,
       client_reference_id: body.order,
       line_items: [

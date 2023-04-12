@@ -5,11 +5,11 @@ import { loadCart } from '../lib/data'
 import supabase from '../components/SupabaseClient'
 // import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
-const stripe = new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
+const stripe=() => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret: string = import.meta.env.PRIVATE_STRIPE_ENDPOINT
+const endpointSecret=() => import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 // console.log(JSON.stringify(loadCart()))
 
@@ -36,7 +36,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   let event: Stripe.Event|undefined;
 
   try {
-    event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
+    event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
     console.log(`Event Type: ${event.type}`)
 
   } catch (err: any) {
@@ -54,7 +54,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   switch (event.type) {
     case 'checkout.session.completed': {
       console.log("Session Completed",event);
-      const newSession = await stripe.checkout.sessions.retrieve(
+      const newSession = await stripe().checkout.sessions.retrieve(
         data.id)
       console.log(newSession);
       await supabase.from('profile').update({
