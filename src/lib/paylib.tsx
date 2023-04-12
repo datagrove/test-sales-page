@@ -93,6 +93,13 @@ function CheckoutForm() {
     const orderTotal = n * price
     const email = order.email
 
+    const response = await fetch("/supabaseSubmit", {
+      method: "POST",
+      body: JSON.stringify(loadCart()),
+    });
+
+    console.log(response.body?.getReader().read())
+
     const a = await fetch('/checkout', {
       method: 'POST',
       cache: "no-cache", 
