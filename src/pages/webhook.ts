@@ -55,11 +55,11 @@ export const post: APIRoute = async function get({ params, request }: any) {
     case 'checkout.session.completed': {
       console.log("Session Completed",event);
       const newSession = await stripe.checkout.sessions.retrieve(
-        data.id,
-        { expand: ['custom_fields'] })
+        data.id)
+      console.log(newSession);
       await supabase.from('profile').update({
-        Payment_status: true
-      }).eq('order_number', newSession.payment_status)
+        Payment_status: true,
+      }).eq('order_number', newSession.client_reference_id)
       break;
     }
     default:

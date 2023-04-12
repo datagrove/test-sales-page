@@ -97,19 +97,17 @@ function CheckoutForm() {
       method: "POST",
       body: JSON.stringify(loadCart()),
     });
-    
-    const result = await response
 
-    if (!result.body) {
-      console.log("Response is empty")
-    } else {
-      console.log(result.body.getReader().read().toString())
-    }
+    const content = await response.json()
+    console.log(content)
+
+    const order_id = content.order_number
+    console.log(order_id)
 
     const a = await fetch('/checkout', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal), "email":String(email), "quantity":String(n.toString())}),
+      body: JSON.stringify({"order":String(order_id), "email":String(email), "quantity":String(n.toString())}),
     })
     // console.log(a)
     const b = await a.json() as {

@@ -60,7 +60,7 @@ export const post: APIRoute = async ({ request }) => {
 
     });
 
-    
+
     // Do something with the formData, then return a success response
     return new Response(
       JSON.stringify({
