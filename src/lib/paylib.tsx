@@ -97,8 +97,14 @@ function CheckoutForm() {
       method: "POST",
       body: JSON.stringify(loadCart()),
     });
+    
+    const result = await response
 
-    console.log(response.body?.getReader().read())
+    if (!result.body) {
+      console.log("Response is empty")
+    } else {
+      console.log(result.body.getReader().read().toString())
+    }
 
     const a = await fetch('/checkout', {
       method: 'POST',
