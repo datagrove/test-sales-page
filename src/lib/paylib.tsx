@@ -1,7 +1,7 @@
 import { Component, Show, createSignal, onMount, For } from 'solid-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { CardCvc, CardExpiry, CardNumber, Elements, useStripe, useStripeElements } from 'solid-stripe'
-import { Order, loadCart } from './data'
+import {  Elements, useStripe, useStripeElements } from 'solid-stripe'
+import { loadCart } from './data'
 
 
 // IMPORTANT!!! replace this key with your PUBLIC key. Do not allow your private key to put into git!!!!!!!
@@ -93,32 +93,41 @@ function CheckoutForm() {
     const orderTotal = n * price
     const email = order.email
 
-    const a = await fetch('/intent', {
+    const response = await fetch("/supabaseSubmit", {
+      method: "POST",
+      body: JSON.stringify(loadCart()),
+    });
+
+    const content = await response.json()
+    console.log(content)
+
+    const order_id = content.order_number
+    console.log(order_id)
+
+    const a = await fetch('/checkout', {
       method: 'POST',
       cache: "no-cache", 
-      body: JSON.stringify({"amount":Number(orderTotal), receipt_email:String(email), "quantity":String(n.toString())}),
+      body: JSON.stringify({"order":String(order_id), "email":String(email), "quantity":String(n.toString())}),
     })
-    const b = await a.json();
-    const result = await stripe().confirmCardPayment(b.clientSecret, {
-      payment_method: {
-        card: elements().getElement(CardNumber)!,
-        billing_details: {},
-      },
-    })
-
-    if (!result.error) {
-      const response = await fetch("/supabaseSubmit", {
-        method: "POST",
-        body: JSON.stringify(loadCart()),
-      });
-      location.href = '/thankyou'
-    } else {
-      setPaying(false)
-      setError(result.error.message??"unknown error")
+    // console.log(a)
+    const b = await a.json() as {
+      url: string
     }
+    location.href = b.url;
+
+    // if (!result.error) {
+    //   const response = await fetch("/supabaseSubmit", {
+    //     method: "POST",
+    //     body: JSON.stringify(loadCart()),
+    //   });
+    //   location.href = '/thankyou'
+    // } else {
+    //   setPaying(false)
+    //   setError(result.error.message??"unknown error")
+    // }
   }
   return (
-    <div class="dark:text-white">
+    <div class="dark:text-white flex justify-center">
       
       {/* <div>You can use these values to test</div>
       <div>Your public stripe key is {api_key}</div>
@@ -127,28 +136,9 @@ function CheckoutForm() {
       <div>999</div>
       <div>{error()}</div> */}
       
-    <form onsubmit={submit} >
-      <div class="flex flex-col items-center justify-center mb-24">
-        <div class="bg-gray-200 w-80 mb-4 p-4 rounded-md">
-          <div class="p-2 my-4 rounded border-2 border-slate-400">
-            <CardNumber />
-          </div>
-          
-          <div class="flex">
-            <div class="p-2 my-4 w-1/2 mr-2 rounded border-2 border-slate-400">
-              <CardExpiry />
-            </div>
-
-            <div class="p-2 my-4 w-1/2 ml-2 rounded border-2 border-slate-400">
-              <CardCvc />
-            </div>
-          </div>
-        </div>
-        <button class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
+        <button onClick={submit} class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
           Pay
         </button>
-      </div>
-    </form>
     </div>
   )
 }

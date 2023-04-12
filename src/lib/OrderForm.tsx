@@ -19,14 +19,14 @@ export const OrderForm: Component = () => {
   onMount(()=>{
       if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
-      console.log("loaded ", a)
+      // console.log("loaded ", a)
       setOrder(a)
     }
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
     window.localStorage.order = JSON.stringify(order());
-    console.log(window.localStorage.order)
+    // console.log(window.localStorage.order)
   }
   const addStudent = ()=>{
     update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
@@ -37,11 +37,9 @@ export const OrderForm: Component = () => {
     update({student: o})
   }
 
-  // console.log(order())
-
   const addStudentEnabled = () => {
     let result = false
-    // console.log("order().student in OrderForm: ", order().student)
+
     order().student.map((student)=>{
       if(student.first === '' || student.last === '' || student.grade === ''){
         result = true
@@ -51,13 +49,9 @@ export const OrderForm: Component = () => {
 }
 
 const checkout = (e: any) => {
-  location.href="/pay"
   e.preventDefault()
-  // alert("In the goToPay function")
-  // document.location.href="pay.tsx"
-  // window.open("/pay")
-  // window.location.href=("/pay")
-  // window.location.href="/pay"
+  location.href="/pay"
+
 }
   
 
@@ -106,7 +100,7 @@ const checkout = (e: any) => {
             />
           </div>
         </div>
-        {/* <hr /> */}
+
         <div class="mb-6">
           <h3 class="text-xl">Your Student(s)</h3>
           <div class="m-2">
@@ -152,7 +146,7 @@ const checkout = (e: any) => {
           <br />
         </div>
         <div class="flex justify-center mt-4">
-        {/* <a href='/pay'>  */}
+
           <button 
             id="checkout"
             disabled={addStudentEnabled()}
@@ -161,7 +155,7 @@ const checkout = (e: any) => {
           >
             Checkout
           </button>
-          {/* </a> */}
+
         </div>
     </form>
 

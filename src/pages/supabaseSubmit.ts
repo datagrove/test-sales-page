@@ -60,10 +60,12 @@ export const post: APIRoute = async ({ request }) => {
 
     });
 
+
     // Do something with the formData, then return a success response
     return new Response(
       JSON.stringify({
-        message: "Success!"
+        message: "Success!",
+        order_number: order_number,
       }),
       { status: 200 }
     );
