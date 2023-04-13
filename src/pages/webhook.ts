@@ -29,8 +29,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
     buffers.push(chunk);
   }
 
-  const uint8array = new Uint8Array([...buffers]);
-  const body = new TextDecoder().decode(uint8array)
+  const body = new TextDecoder().decode(buffers[0]);
 
   const sig = request.headers.get('stripe-signature');
 
@@ -43,8 +42,6 @@ export const post: APIRoute = async function get({ params, request }: any) {
   } catch (err: any) {
     console.log(err.type);
   }
-
-  //   console.log(`Event Type: ${event.type}`)
 
   if (event === undefined) {
     console.log("Event is undefined")
