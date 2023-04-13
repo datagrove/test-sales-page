@@ -5,11 +5,11 @@ import { loadCart } from '../lib/data'
 import supabase from '../components/SupabaseClient'
 // import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
-const stripe=() => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
+const stripe = () => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret=() => import.meta.env.PRIVATE_STRIPE_ENDPOINT
+const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 // console.log(JSON.stringify(loadCart()))
 
@@ -33,14 +33,14 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   const sig = request.headers.get('stripe-signature');
 
-  let event: Stripe.Event|undefined;
+  let event: Stripe.Event | undefined;
 
   try {
     event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
     console.log(`Event Type: ${event.type}`)
 
   } catch (err: any) {
-    console.log(err.type);
+    console.log("Error Type: "+ err.type);
   }
 
   if (event === undefined) {
@@ -49,32 +49,32 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
     const data = event.data.object as Stripe.Checkout.Session;
 
-  switch (event.type) {
-    case 'checkout.session.completed': {
-      console.log("Session Completed",event);
-      const newSession = await stripe().checkout.sessions.retrieve(
-        data.id)
-      console.log(newSession);
-      await supabase.from('profile').update({
-        Payment_status: true,
-      }).eq('order_number', newSession.client_reference_id)
-      break;
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        console.log("Session Completed", event);
+        const newSession = await stripe().checkout.sessions.retrieve(
+          data.id)
+        console.log("New Session: "+ JSON.stringify(newSession));
+        await supabase.from('profile').update({
+          Payment_status: true,
+        }).eq('order_number', newSession.client_reference_id)
+        break;
+      }
+      default:
+        console.log(`Unhandled event type ${event.type}`)
     }
-    default:
-      console.log(`Unhandled event type ${event.type}`)
-  }
 
+    return new Response(
+      JSON.stringify({
+        message: `Success`,
+      }),
+      { status: 200 }
+    );
+  }
   return new Response(
     JSON.stringify({
-      message: `Success`,
+      message: `Failure`,
     }),
-    { status: 200 }
+    { status: 400 }
   );
-}
-return new Response(
-  JSON.stringify({
-    message: `Failure`,
-  }),
-  { status: 400 }
-);
 }

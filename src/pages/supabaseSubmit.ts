@@ -44,7 +44,7 @@ export const post: APIRoute = async ({ request }) => {
 
     // let studentSubmission: any = {}
     
-    students.forEach(async (element: { first: string; last: string; grade: number; }) => {
+    await students.forEach(async (element: { first: string; last: string; grade: number; }) => {
         let studentSubmission: any = {}
         
         studentSubmission.order_number = order_number
