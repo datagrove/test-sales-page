@@ -29,7 +29,8 @@ export const post: APIRoute = async function get({ params, request }: any) {
     buffers.push(chunk);
   }
 
-  const body = Buffer.concat(buffers);
+  const uint8array = new Uint8Array([...buffers]);
+  const body = new TextDecoder().decode(uint8array)
 
   const sig = request.headers.get('stripe-signature');
 
