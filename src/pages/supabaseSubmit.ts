@@ -50,19 +50,23 @@ export const post: APIRoute = async ({ request }) => {
 
     console.log("Order Number: " + order_number)
 
+    const studentList: any = []
 
     // let studentSubmission: any = {}
     console.log("Students after Profile: " + JSON.stringify(students))
-    await students.forEach(async (element: { first: string; last: string; grade: number; }) => {
+    students.forEach(async (element: { first: string; last: string; grade: number; }) => {
       let studentSubmission: any = {}
+      console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
       studentSubmission.order_number = order_number
       studentSubmission.studentFirstName = element.first
       studentSubmission.studentLastName = element.last
       studentSubmission.grade = element.grade
+      studentList.push(studentSubmission)
+      console.log("Student List:" + studentList)
       console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
-      const { error, data } = await supabase.from('Test_Info').insert([studentSubmission]).select()
+      const { data, error } = await supabase.from('Test_Info').insert([studentSubmission]).select()
 
       console.log("Student Data: " + JSON.stringify(data))
 
