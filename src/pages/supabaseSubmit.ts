@@ -3,6 +3,7 @@ import type { APIRoute } from "astro";
 
 export const post: APIRoute = async ({ request }) => {
   const formData = await request.json();
+  console.log(formData)
   const firstName = formData.first;
   const lastName = formData.last;
   const email = formData.email;
