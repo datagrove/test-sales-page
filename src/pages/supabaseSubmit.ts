@@ -3,12 +3,12 @@ import type { APIRoute } from "astro";
 
 export const post: APIRoute = async ({ request }) => {
   const formData = await request.json();
-  console.log("Form Data: " + formData)
+  console.log("Form Data: " + JSON.stringify(formData))
   const firstName = formData.first;
   const lastName = formData.last;
   const email = formData.email;
   const students = formData.student;
-  console.log("Students before Profile:" + students)
+  console.log("Students before Profile:" + JSON.stringify(students))
 
   // Validate the formData - you'll probably want to do more than this
   if (!firstName || !email || !lastName || !students) {
@@ -26,7 +26,7 @@ export const post: APIRoute = async ({ request }) => {
   submission.lastName = lastName
   submission.email = email
   // submission.students = students
-  console.log("Profile Submission" + submission)
+  console.log("Profile Submission: " + JSON.stringify(submission))
 
   const { error, data } = await supabase.from('profile').insert([submission]).select()
 
@@ -42,14 +42,14 @@ export const post: APIRoute = async ({ request }) => {
       { status: 500 }
     );
   } else {
-    console.log("Profile Data: " + data)
+    console.log("Profile Data: " + JSON.stringify(data))
     const order_number = data[0].order_number
 
     console.log("Order Number: " + order_number)
 
 
     // let studentSubmission: any = {}
-    console.log("Students after Profile: " + students)
+    console.log("Students after Profile: " + JSON.stringify(students))
     students.forEach(async (element: { first: string; last: string; grade: number; }) => {
       let studentSubmission: any = {}
 
@@ -57,7 +57,7 @@ export const post: APIRoute = async ({ request }) => {
       studentSubmission.studentFirstName = element.first
       studentSubmission.studentLastName = element.last
       studentSubmission.grade = element.grade
-      console.log("Student Submission: " + studentSubmission)
+      console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
       const { error: studentError, data: studentData } = await supabase.from('Test_Info').insert([studentSubmission]).select()
 
