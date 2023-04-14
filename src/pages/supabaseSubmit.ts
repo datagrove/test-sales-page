@@ -31,7 +31,7 @@ export const post: APIRoute = async ({ request }) => {
   const { error, data } = await supabase.from('profile').insert([submission]).select()
 
   if (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 
   if (!data) {
