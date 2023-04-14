@@ -66,27 +66,39 @@ export const post: APIRoute = async ({ request }) => {
       console.log("Student List:" + JSON.stringify(studentList))
       console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
-      const { data, error } = await supabase.from('Test_Info').insert([studentSubmission]).select()
+      // const { data, error } = await supabase.from('Test_Info').insert([studentSubmission]).select()
 
-      console.log("Student Data: " + JSON.stringify(data))
+      // console.log("Student Data: " + JSON.stringify(data))
 
-      if (error) {
+      // if (error) {
+      //   return new Response(
+      //     JSON.stringify({
+      //       message: "Error creating student entries",
+      //     }),
+      //     { status: 500 }
+      //   );
+      // } else if (!data) {
+      //   return new Response(
+      //     JSON.stringify({
+      //       message: "No Student Data",
+      //     }),
+      //     { status: 500 }
+      //   );
+      // }
+    })
+
+    const {data, error} = await supabase.from('Test_Info').insert(studentList).select()
+
+    console.log("Student Data: " + JSON.stringify(data))   
+
+    if (error) {
         return new Response(
           JSON.stringify({
             message: "Error creating student entries",
           }),
           { status: 500 }
         );
-      } else if (!data) {
-        return new Response(
-          JSON.stringify({
-            message: "No Student Data",
-          }),
-          { status: 500 }
-        );
       }
-    })
-
 
     // Do something with the formData, then return a success response
     return new Response(
