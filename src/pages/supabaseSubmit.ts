@@ -37,9 +37,7 @@ export const post: APIRoute = async ({ request }) => {
       }),
       { status: 500 }
     );
-  }
-
-  if (!data) {
+  } else if (!data) {
     return new Response(
       JSON.stringify({
         message: "No profile Data",
@@ -55,7 +53,7 @@ export const post: APIRoute = async ({ request }) => {
 
     // let studentSubmission: any = {}
     console.log("Students after Profile: " + JSON.stringify(students))
-    students.forEach(async (element: { first: string; last: string; grade: number; }) => {
+    await students.forEach(async (element: { first: string; last: string; grade: number; }) => {
       let studentSubmission: any = {}
 
       studentSubmission.order_number = order_number
@@ -75,9 +73,7 @@ export const post: APIRoute = async ({ request }) => {
           }),
           { status: 500 }
         );
-      }
-
-      if (!data) {
+      } else if (!data) {
         return new Response(
           JSON.stringify({
             message: "No Student Data",
