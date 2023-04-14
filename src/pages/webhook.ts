@@ -30,6 +30,8 @@ export const post: APIRoute = async function get({ params, request }: any) {
   }
 
   console.log("Buffer length = " + buffers.length)
+  console.log(new TextDecoder().decode(buffers[0]))
+  console.log(new TextDecoder().decode(buffers[1]))
   const body = new TextDecoder().decode(buffers[0]);
 
   const sig = request.headers.get('stripe-signature');
