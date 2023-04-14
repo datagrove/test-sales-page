@@ -43,7 +43,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
   const sig = request.headers.get('stripe-signature');
 
-  let event: Stripe.Event | undefined;
+  let event;
 
   try {
     event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
