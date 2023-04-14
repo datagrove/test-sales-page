@@ -63,7 +63,7 @@ export const post: APIRoute = async ({ request }) => {
       studentSubmission.studentLastName = element.last
       studentSubmission.grade = element.grade
       studentList.push(studentSubmission)
-      console.log("Student List:" + studentList)
+      console.log("Student List:" + JSON.stringify(studentList))
       console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
       const { data, error } = await supabase.from('Test_Info').insert([studentSubmission]).select()
