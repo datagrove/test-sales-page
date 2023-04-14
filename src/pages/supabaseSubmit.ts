@@ -61,10 +61,10 @@ export const post: APIRoute = async ({ request }) => {
 
       const { error: studentError, data: studentData } = await supabase.from('Test_Info').insert([studentSubmission]).select()
 
-      console.log(studentData)
+      console.log("Student Data: " + JSON.stringify(studentData))
 
       if (studentError) {
-        alert(studentError.message)
+        console.log("Student Error: " + studentError.message)
       }
 
       if (!studentData) {
