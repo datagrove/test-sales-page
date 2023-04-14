@@ -31,13 +31,18 @@ export const post: APIRoute = async ({ request }) => {
   const { error, data } = await supabase.from('profile').insert([submission]).select()
 
   if (error) {
-    console.log(error.message)
+    return new Response(
+      JSON.stringify({
+        message: "Error creating profile",
+      }),
+      { status: 500 }
+    );
   }
 
   if (!data) {
     return new Response(
       JSON.stringify({
-        message: "Error creating profile",
+        message: "No profile Data",
       }),
       { status: 500 }
     );
@@ -64,13 +69,18 @@ export const post: APIRoute = async ({ request }) => {
       console.log("Student Data: " + JSON.stringify(data))
 
       if (error) {
-        console.log("Student Error: " + error.message)
+        return new Response(
+          JSON.stringify({
+            message: "Error creating student entries",
+          }),
+          { status: 500 }
+        );
       }
 
       if (!data) {
         return new Response(
           JSON.stringify({
-            message: "Error creating student entries",
+            message: "No Student Data",
           }),
           { status: 500 }
         );
