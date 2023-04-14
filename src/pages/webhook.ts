@@ -5,11 +5,11 @@ import { loadCart } from '../lib/data'
 import supabase from '../components/SupabaseClient'
 // import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
-const stripe=() => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
+const stripe = () => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret=() => import.meta.env.PRIVATE_STRIPE_ENDPOINT
+const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 // console.log(JSON.stringify(loadCart()))
 
@@ -29,21 +29,25 @@ export const post: APIRoute = async function get({ params, request }: any) {
     buffers.push(chunk);
   }
 
-  const body = Buffer.concat(buffers);
+  let body: string = ''
+
+  buffers.forEach((buffer) => {
+    body += new TextDecoder().decode(buffer)
+  })
+
+  // const body = new TextDecoder().decode(buffers[0]);
 
   const sig = request.headers.get('stripe-signature');
 
-  let event: Stripe.Event|undefined;
+  let event;
 
   try {
-    event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
+    event = await stripe().webhooks.constructEventAsync(body, sig, endpointSecret())
     console.log(`Event Type: ${event.type}`)
 
   } catch (err: any) {
-    console.log(err.type);
+    console.log("Error Type: "+ err.type);
   }
-
-  //   console.log(`Event Type: ${event.type}`)
 
   if (event === undefined) {
     console.log("Event is undefined")
@@ -51,32 +55,31 @@ export const post: APIRoute = async function get({ params, request }: any) {
 
     const data = event.data.object as Stripe.Checkout.Session;
 
-  switch (event.type) {
-    case 'checkout.session.completed': {
-      console.log("Session Completed",event);
-      const newSession = await stripe().checkout.sessions.retrieve(
-        data.id)
-      console.log(newSession);
-      await supabase.from('profile').update({
-        Payment_status: true,
-      }).eq('order_number', newSession.client_reference_id)
-      break;
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        console.log("Session Completed", event);
+        const newSession = await stripe().checkout.sessions.retrieve(
+          data.id)
+        await supabase.from('profile').update({
+          Payment_status: true,
+        }).eq('order_number', newSession.client_reference_id)
+        break;
+      }
+      default:
+        console.log(`Unhandled event type ${event.type}`)
     }
-    default:
-      console.log(`Unhandled event type ${event.type}`)
-  }
 
+    return new Response(
+      JSON.stringify({
+        message: `Success`,
+      }),
+      { status: 200 }
+    );
+  }
   return new Response(
     JSON.stringify({
-      message: `Success`,
+      message: `Failure`,
     }),
-    { status: 200 }
+    { status: 400 }
   );
-}
-return new Response(
-  JSON.stringify({
-    message: `Failure`,
-  }),
-  { status: 400 }
-);
 }
