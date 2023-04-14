@@ -29,18 +29,15 @@ export const post: APIRoute = async function get({ params, request }: any) {
     buffers.push(chunk);
   }
 
-  console.log(buffers)
-
-
   console.log("Buffer length = " + buffers.length)
-  console.log(new TextDecoder().decode(buffers[0]))
-  console.log(new TextDecoder().decode(buffers[1]))
 
   let body: string = ''
 
   buffers.forEach((buffer) => {
     body += new TextDecoder().decode(buffer)
   })
+
+  console.log(body)
 
   // const body = new TextDecoder().decode(buffers[0]);
 
