@@ -9,7 +9,7 @@ const stripe = () => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT
+const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT_LOCAL
 
 // console.log(JSON.stringify(loadCart()))
 
@@ -46,7 +46,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   let event;
 
   try {
-    event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
+    event = await stripe().webhooks.constructEventAsync(body, sig, endpointSecret())
     console.log(`Event Type: ${event.type}`)
 
   } catch (err: any) {
