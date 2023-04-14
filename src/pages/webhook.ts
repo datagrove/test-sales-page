@@ -9,7 +9,7 @@ const stripe = () => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT_LOCAL
+const endpointSecret = () => import.meta.env.PRIVATE_STRIPE_ENDPOINT
 
 // console.log(JSON.stringify(loadCart()))
 
