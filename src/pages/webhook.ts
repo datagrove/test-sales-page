@@ -1,8 +1,8 @@
 
 import Stripe from 'stripe'
 import type { APIRoute } from 'astro';
-import { loadCart } from '../../lib/data'
-import supabase from '../../components/SupabaseClient'
+import { loadCart } from '../lib/data'
+import supabase from '../components/SupabaseClient'
 // import  {DatabaseSubmit} from '../lib/OrderSubmit'
 
 const stripe = () => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
