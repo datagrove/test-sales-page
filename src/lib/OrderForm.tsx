@@ -50,7 +50,7 @@ export const OrderForm: Component = () => {
 
 const checkout = (e: any) => {
   e.preventDefault()
-  location.href="/CAT/pay"
+  location.href="/pay"
 
 }
   

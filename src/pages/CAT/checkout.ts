@@ -24,11 +24,11 @@ export const post: APIRoute = async function get({ params, request }: any) {
         },
       ],
       mode: 'payment',
-      success_url: `https://cloudflare.cat-test-codes.pages.dev/CAT/thankyou`,
-      cancel_url: `https://cloudflare.cat-test-codes.pages.dev/CAT/cancel`,
+      success_url: `https://stripe.cat-test-codes.pages.dev/thankyou`,
+      cancel_url: `https://stripe.cat-test-codes.pages.dev/cancel`,
       automatic_tax: { enabled: true },
     })
-    url = session.url ?? "https://cloudflare.cat-test-codes.pages.dev/CAT/cancel"
+    url = session.url ?? "https://stripe.cat-test-codes.pages.dev/cancel"
   } catch (e: any) {
     // console.log(stripe)
     error = JSON.stringify(e)
