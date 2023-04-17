@@ -24,11 +24,11 @@ export const post: APIRoute = async function get({ params, request }: any) {
         },
       ],
       mode: 'payment',
-      success_url: `https://cat.datagrove.com/thankyou`,
-      cancel_url: `https://cat.datagrove.com/cancel`,
+      success_url: `https://cat-test-codes.pages.dev/thankyou`,
+      cancel_url: `https://cat-test-codes.pages.dev/cancel`,
       automatic_tax: { enabled: true },
     })
-    url = session.url ?? "https://cat.datagrove.com/cancel"
+    url = session.url ?? "https://cat-test-codes.pages.dev/cancel"
   } catch (e: any) {
     // console.log(stripe)
     error = JSON.stringify(e)
