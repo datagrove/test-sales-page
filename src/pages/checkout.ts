@@ -19,7 +19,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
       client_reference_id: body.order,
       line_items: [
         {
-          price: 'price_1MoBVGBRZLMDvS4RGtPKuq2k',
+          price: 'price_1MxyyGBRZLMDvS4R1o4lRcku',
           quantity: body.quantity,
         },
       ],
