@@ -79,7 +79,6 @@ const StudentForm: Component<Props> = (props: Props ) => {
             </select>
             <div>
               <br/>
-              <p></p>
             </div>
             <p><i>Note: Academic Excellence recommends that if you are testing in the middle of the school year you select the student's current grade level, 
               <u>if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student</u>, not the student's past grade level. 
