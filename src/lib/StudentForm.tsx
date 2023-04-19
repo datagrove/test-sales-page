@@ -80,9 +80,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
             <div>
               <br/>
             </div>
-            <p><i>Note: Academic Excellence recommends that if you are testing in the middle of the school year you select the student's current grade level, 
-              <u>if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student</u>, not the student's past grade level. 
-              If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements with your local regulations. </i></p>
+            <p><i>If you are testing at the end of the year we recommend selecting the <b><u>next</u></b> grade level for your student. For more information see below.</i></p>
             
             {/* <p>First Name: { props.student().first }</p>
             <p>Last Name: { props.student().last }</p>
