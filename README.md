@@ -1,5 +1,20 @@
-Note, before this is deployed the solid-stripe should be forked.
+A simple site for selling a digital product using Astro.build, Stripe, SolidJS, Supabase, and Cloudflare. 
 
-in .env, provide your stripe keys
-PUBLIC_STRIPE_API=xxx...
-PRIVATE_STRIPE_API=yyy...
+Live site: https://cat.datagrove.com
+
+Demo site: 
+
+Contents
+========
+
+ * [Why?](#why)
+ * [Installation](#installation)
+ * [Usage](#usage)
+
+
+### Why?
+
+### Installation
+
+### Usage
+
