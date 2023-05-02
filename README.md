@@ -27,6 +27,7 @@ To run locally run `npm run dev`
 ## Usage
 
 ### Stripe Account Setup
+---
 
 Create a stripe account at https://dashboard.stripe.com/register
 
@@ -53,6 +54,7 @@ To run test payments that result in a "success" use the following test info (mor
     CVV: 999
 
 ### Supabase Setup
+---
 
 Sign up for a Supabase Account at https://app.supabase.com/sign-up
 
@@ -69,6 +71,7 @@ To run the site locally add the anon public key to your .env file created in the
 Create tables for your project, you can adjust these as needed for the information you need in your tables. Adjust the subabaseSubmit.ts to send information to your specific tables and fields.
 
 ### Cloudflare Hosting
+---
 
 Create a cloudflare pages project linked to your git repository for your project.
 
@@ -83,10 +86,11 @@ Set up your environment secrets on your pages project by going to Settings > Env
 
     For security encrypt your private variables
 
-## Stripe Webhook Setup
+### Stripe Webhook Setup
+---
 This waits for the successful stripe payment to update the status of the paid field in the supabase database
 
-### Local
+#### Local
 
 ---
 
@@ -98,7 +102,7 @@ Make sure to put your endpoint secret in your .env file. DO NOT COMMIT THIS TO G
 
     Replace the XXX value in PRIVATE_STRIPE_ENDPOINT with your endpoint secret whsec...
 
-### Cloudflare
+#### Cloudflare
 
 ---
 
