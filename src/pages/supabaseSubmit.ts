@@ -28,7 +28,7 @@ export const post: APIRoute = async ({ request }) => {
   // submission.students = students
   console.log("Profile Submission: " + JSON.stringify(submission))
 
-  const { error, data } = await supabase.from('profile').insert([submission]).select()
+  const { error, data } = await supabase.from('profile_test').insert([submission]).select()
 
   if (error) {
     return new Response(
@@ -65,29 +65,9 @@ export const post: APIRoute = async ({ request }) => {
       studentList.push(studentSubmission)
       console.log("Student List:" + JSON.stringify(studentList))
       console.log("Student Submission: " + JSON.stringify(studentSubmission))
-
-      // const { data, error } = await supabase.from('Test_Info').insert([studentSubmission]).select()
-
-      // console.log("Student Data: " + JSON.stringify(data))
-
-      // if (error) {
-      //   return new Response(
-      //     JSON.stringify({
-      //       message: "Error creating student entries",
-      //     }),
-      //     { status: 500 }
-      //   );
-      // } else if (!data) {
-      //   return new Response(
-      //     JSON.stringify({
-      //       message: "No Student Data",
-      //     }),
-      //     { status: 500 }
-      //   );
-      // }
     })
 
-    const {data:studentData, error} = await supabase.from('Test_Info').insert(studentList).select()
+    const {data:studentData, error} = await supabase.from('Test_Info_test').insert(studentList).select()
 
     console.log("Student Data: " + JSON.stringify(studentData))   
 
