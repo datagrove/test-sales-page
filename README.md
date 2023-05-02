@@ -8,6 +8,7 @@ Contents
  * [Why?](#why)
  * [Installation](#installation)
  * [Usage](#usage)
+ * [Credits](#credits)
 
 
 ## Why?
