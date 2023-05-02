@@ -38,7 +38,7 @@ On the Home page you can access your publishable and secret keys. You api keys a
 
 BE SURE NOT TO COMMIT YOUR SECRET KEY TO GIT. You can add .env* to your .gitignore file locally to prevent your keys from being committed
 
-To run the site locally add a .env file to your project using the format in sample_env.md. 
+To run the site locally add a .env file to the root of your project using the format in sample_env.md. 
 
     Use your stripe keys to replace the XXX values in 
     PUBLIC_STRIPE_API (Use your publishable key) and 
