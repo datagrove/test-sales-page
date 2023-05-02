@@ -79,6 +79,39 @@ If deploying from git:
     Build Command: npm run build
     Build Directory: /dist
 
+Set up your environment secrets on your pages project by going to Settings > Environment Variables
+
+    For security encrypt your private variables
+
+## Stripe Webhook Setup
+This waits for the successful stripe payment to update the status of the paid field in the supabase database
+
+### Local
+
+---
+
+On your stripe dashboard go to Developers > Webhooks > Test in a local environment
+
+Follow the instructions for setting up your local webhook. The default server port for this application is 3000 (not 4242)
+
+Make sure to put your endpoint secret in your .env file. DO NOT COMMIT THIS TO GIT!
+
+    Replace the XXX value in PRIVATE_STRIPE_ENDPOINT with your endpoint secret whsec...
+
+### Cloudflare
+
+---
+
+On your stripe dashboard go Developers > Webhooks > Add an Endpoint
+
+Enter the cloudflare url of your pages deployment 
+
+Select events you want to listen for or simply choose all events
+
+Click `Add Endpoint`
+
+Reveal your signing secret and add this to your cloudflare environment variables (recommend encrypting)
+
 ## Credits
 This project uses the following open source packages:
 - [Astro](astro.build)
