@@ -24,6 +24,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
         },
       ],
       mode: 'payment',
+      allow_promotion_codes: true,
       success_url: `https://showhn.cat-test-codes.pages.dev/thankyou`,
       cancel_url: `https://showhn.cat-test-codes.pages.dev/cancel`,
       automatic_tax: { enabled: true },
