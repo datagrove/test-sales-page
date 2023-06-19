@@ -55,7 +55,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
               max = "12"
               onChange={(e) => update({grade: e.currentTarget.value})}
             /> */}
-            <label class="sr-only">Select Grade</label>
+            <label class="sr-only">Select Exam Grade Level</label>
             <select
               name="grades" 
               id="studentGrade"
@@ -64,7 +64,7 @@ const StudentForm: Component<Props> = (props: Props ) => {
               onChange={(e) => update({ grade: e.currentTarget.value })}
               required
             >
-              <option selected disabled hidden value="">Select Grade</option>
+              <option selected disabled hidden value="">Select Exam Grade Level</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -77,7 +77,10 @@ const StudentForm: Component<Props> = (props: Props ) => {
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
-
+            <div>
+              <br/>
+            </div>
+            <p><i>If you are testing at the end of the year we recommend selecting the <b><u>next</u></b> grade level for your student. For more information see below.</i></p>
             
             {/* <p>First Name: { props.student().first }</p>
             <p>Last Name: { props.student().last }</p>

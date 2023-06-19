@@ -155,8 +155,15 @@ const checkout = (e: any) => {
           >
             Checkout
           </button>
-
-        </div>
+          </div>
+          <div> 
+            <br/>
+          </div>
+          <div>
+          <p><i>Note: The testing provider, Academic Excellence, recommends that if you are testing in the middle of the school year you select the student's current grade level, 
+              if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student, not the student's past grade level. 
+              If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements with your local regulations. </i></p>
+          </div>
     </form>
 
     </div>

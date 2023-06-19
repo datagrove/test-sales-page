@@ -3,6 +3,7 @@
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
     "jsx": "preserve",
-    "jsxImportSource": "solid-js"
+    "jsxImportSource": "solid-js",
+    "module": "esnext",
   }
 }

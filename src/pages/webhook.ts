@@ -29,15 +29,11 @@ export const post: APIRoute = async function get({ params, request }: any) {
     buffers.push(chunk);
   }
 
-  console.log("Buffer length = " + buffers.length)
-
   let body: string = ''
 
   buffers.forEach((buffer) => {
     body += new TextDecoder().decode(buffer)
   })
-
-  console.log(body)
 
   // const body = new TextDecoder().decode(buffers[0]);
 
@@ -46,7 +42,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
   let event;
 
   try {
-    event = stripe().webhooks.constructEvent(body, sig, endpointSecret())
+    event = await stripe().webhooks.constructEventAsync(body, sig, endpointSecret())
     console.log(`Event Type: ${event.type}`)
 
   } catch (err: any) {
@@ -64,7 +60,6 @@ export const post: APIRoute = async function get({ params, request }: any) {
         console.log("Session Completed", event);
         const newSession = await stripe().checkout.sessions.retrieve(
           data.id)
-        console.log("New Session: "+ JSON.stringify(newSession));
         await supabase.from('profile').update({
           Payment_status: true,
         }).eq('order_number', newSession.client_reference_id)

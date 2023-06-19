@@ -1,0 +1,48 @@
+---
+import { SITE } from "../config";
+import PageLayout from "../Layouts/PageLayout.astro";
+// import { DatabaseSubmit} from '../lib/OrderSubmit'
+import { Order, loadCart } from "../lib/data";
+// import Webhook from '../lib/Webhook'
+import OrderSubmit from "../lib/OrderSubmit";
+---
+
+<PageLayout>
+  <!-- <OrderSubmit client:only/> -->
+  <!-- <Webhook client:only/> -->
+  <!-- <h1>{SITE.title}</h1> -->
+  <div class="flex flex-col items-center mt-16">
+    <p class="text-xl font-bold">
+      Your order has been <b><u>Cancelled</u></b>.
+    </p>
+
+    <div class="p-8 bg-slate-300 dark:bg-slate-500 rounded-full mt-8 mb-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="60"
+        height="60"
+        viewBox="0 0 256 256"
+        class="text-red-600 dark:text-red-400"
+        ><path
+          fill="currentColor"
+          d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
+        ></path></svg
+      >
+    </div>
+    <h2 class="dark:text-white text-lg py-2">
+      Your purchase has been cancelled.
+    </h2>
+    <div class="w-80 text-center">
+      <p class="py-2">
+        If you would like to attempt your order again please return to the Test
+        Ordering Homepage
+      </p>
+    </div>
+    <a
+      href="/"
+      class="mt-16 bg-green-700 rounded-full px-4 py-2 text-white w-80 shadow text-center text-lg border border-green-900 dark:border-slate-400"
+    >
+      Return to Test Ordering Homepage
+    </a>
+  </div>
+</PageLayout>

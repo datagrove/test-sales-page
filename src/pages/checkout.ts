@@ -19,16 +19,17 @@ export const post: APIRoute = async function get({ params, request }: any) {
       client_reference_id: body.order,
       line_items: [
         {
-          price: 'price_1MoBVGBRZLMDvS4RGtPKuq2k',
+          price: 'price_1MxyyGBRZLMDvS4R1o4lRcku',
           quantity: body.quantity,
         },
       ],
       mode: 'payment',
-      success_url: `https://stripe.cat-test-codes.pages.dev/thankyou`,
-      cancel_url: `https://stripe.cat-test-codes.pages.dev/cancel`,
+      allow_promotion_codes: true,
+      success_url: `https://cat.datagrove.com/thankyou`,
+      cancel_url: `https://cat.datagrove.com/cancel`,
       automatic_tax: { enabled: true },
     })
-    url = session.url ?? "https://stripe.cat-test-codes.pages.dev/cancel"
+    url = session.url ?? "https://cat.datagrove.com/cancel"
   } catch (e: any) {
     // console.log(stripe)
     error = JSON.stringify(e)
