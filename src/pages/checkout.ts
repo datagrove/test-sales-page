@@ -24,6 +24,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
         },
       ],
       mode: 'payment',
+      allow_promotion_codes: true,
       success_url: `https://cat.datagrove.com/thankyou`,
       cancel_url: `https://cat.datagrove.com/cancel`,
       automatic_tax: { enabled: true },
