@@ -19,7 +19,7 @@ module.exports = {
 		plugin(function ({ addBase, addComponents, addUtilities, theme }) {
 			addComponents({
 				'.faq': {
-					fontSize: "24px",
+					fontSize: "md:24px",
 					margin: "4px 0px 4px 0px",
 					fontWeight: "bold",
 
