@@ -7,6 +7,34 @@ import PageLayout from "../Layouts/PageLayout.astro";
   <!-- <h1 class="dark:text-white text-4xl">{SITE.title}</h1> -->
   <!-- <h2 class="dark:text-white">Home</h2> -->
   <div class="flex flex-col items-center mt-8 mb-24">
+    <div class="border border-gray-400 rounded w-full max-w-2xl flex mb-6">
+      <img 
+        src="/images/studentAtComputer.jpg"
+        class="w-auto hidden md:inline md:w-1/3 rounded"
+      />
+
+      <div class="w-full md:w-2/3 flex items-end">
+        <div class="w-full h-12/5 flex items-end">
+          <div class="flex items-center">
+            <img 
+              src="/images/icons/openBook.svg"
+              class="max-h-16 dark:hidden"
+            />
+
+            <img 
+            src="/images/icons/openBookWhite.svg"
+            class="max-h-16 dark:inline hidden"
+          />
+          </div>
+
+          <div class="w-full">
+            <h1 class="h-full mb-2 ml-1 text-lg md:text-2xl">Pawpaw Homeschool Solutions</h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
     <div class="max-w-2xl">
       <p>
         Datagrove and Pawpaw Homeschool Solutions is pleased to provide
@@ -29,9 +57,7 @@ import PageLayout from "../Layouts/PageLayout.astro";
       <br />
       <p>
         The Online, Untimed CAT with practice test can be purchased through
-        Datagrove for the discounted price of $20.00 per test package. For each
-        test purchased, you will need to enter the student's full name and
-        grade.
+        Datagrove for the discounted price of $20.00 per test package. Each test package purchased will for the grade(s) selected in the order form.
       </p>
       <div class="flex justify-center mt-8">
         <a
@@ -43,7 +69,7 @@ import PageLayout from "../Layouts/PageLayout.astro";
       </div>
       <br />
       <ul class="list-disc list-outside">
-        Your CAT purchase includes:
+        Each CAT package purchase includes:
         <li class="ml-5">
           One Untimed, Comprehensive, Online Achievement Test (reading,
           language, and mathematics)
@@ -57,16 +83,15 @@ import PageLayout from "../Layouts/PageLayout.astro";
       </ul>
       <br />
       <p>
-        Once you place your order you will recieve your payment receipt from
-        Stripe. Within approximately one week (often sooner!) you will receive
-        an email to the address associated with the order with details of how
-        your students can log on to access their test. Test results and
-        certificates can be accessed via the Academic Excellence portal after
-        completing the exam.
+        After placing your order you will recieve a payment receipt from
+        Stripe. Within approximately one week (often sooner!) you will receive test access details via the
+        email associate with the order. Test results and
+        certificates can be accessed via the Academic Excellence portal upon
+        exam completion.
       </p>
       <br />
       <p>
-        If you have questions or issues with your order please contact us at <a
+        Have a few questions? Check out our <a href="/FAQ" class="underline">FAQ page</a>! If you you still need assistance, please feel free to contact us at <a
           href="mailto: achievement.testing@datagrove.com"
           class="underline">Achievement.Testing@datagrove.com</a>
       </p>
