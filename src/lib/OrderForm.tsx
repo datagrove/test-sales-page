@@ -162,7 +162,7 @@ const checkout = (e: any) => {
           </div>
           <div class="mt-2">
             <h3 id="AENoticeAnchor" class="text-center text-xl bold pb-1">Academic Excellence Exam Grade Selection Recommendation</h3>
-            <p><i>The testing provider, Academic Excellence, recommends that if you are testing in the middle of the school year you select the student's current grade level, 
+            <p><i>Testing provider <a href="https://www.academicexcellence.com/complete-online-california-achievement-test-timed/?attributes=eyI5NSI6IiIsIjk2IjoiIiwiOTciOiIiLCIxMDAiOiI4OCIsIjk4IjoiODciLCI5OSI6Ijg1In0" target="_blank" class="underline">Academic Excellence recommends</a> that if you are testing in the middle of the school year you select the student's current grade level, 
                 if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student, not the student's past grade level. 
                 If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements according to your local regulations.</i></p>
           </div>
