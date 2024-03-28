@@ -41,7 +41,7 @@ export const OrderForm: Component = () => {
     let result = false
 
     order().student.map((student)=>{
-      if(student.first === '' || student.last === '' || student.grade === ''){
+      if(student.grade === ''){
         result = true
       }
     })
@@ -59,7 +59,7 @@ const checkout = (e: any) => {
     <div aria-live="polite" class="dark:text-gray-400 align-center flex justify-center mb-24">
       <form 
         id="order-form"
-        class="w-full md:w-2/3 md:max-w-1/2"
+        class="w-full md:w-1/2"
       >
         <div class="mb-6">
           <h3 class="text-xl">Your Information</h3>
@@ -99,12 +99,13 @@ const checkout = (e: any) => {
               onChange={(e) => update({email: e.currentTarget.value})}
             />
           </div>
+
+          <p class="mt-6"><i>If you are testing at the end of the year we recommend selecting the <b><u>next</u></b> grade level for your student. <a href="#AENoticeAnchor" class="underline">See below for more information.</a></i></p>
         </div>
 
         <div class="mb-6">
-          <h3 class="text-xl">Your Student(s)</h3>
+          <h3 class="text-xl">Purchase CAT Codes by Grade Level</h3>
           <div class="m-2">
-
             <For each={order().student} >{ (e,i)=> {
               return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
                 const o = order().student;
@@ -117,9 +118,9 @@ const checkout = (e: any) => {
           <div class={`flex justify-center text-xl font-bold ${addStudentEnabled()=== true ? "": "hidden"}`}>
             <p>All fields are required.</p>
           </div>
-          <div class="flex justify-end mx-6">
+          <div class=" flex justify-start mx-6">
           <button 
-            class="flex justify-center bg-emerald-950 rounded-full shadow px-4 py-2 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
+            class="flex justify-center items-center bg-blue-900 rounded shadow ml-1 px-2 py-1 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
             disabled={ addStudentEnabled()} 
             onClick={addStudent}
 
@@ -131,7 +132,7 @@ const checkout = (e: any) => {
               width="24px" 
               version="1.1" viewBox="0 0 512 512" 
               enable-background="new 0 0 512 512"
-              class="dark:fill-white"
+              class="fill-white"
             >
               <g>
                 <g>
@@ -140,7 +141,7 @@ const checkout = (e: any) => {
                 </g>
               </g>
             </svg>
-            <p class="px-2">Add Student</p>
+            <p class="px-2 text-sm">Add Code</p>
           </button>
           </div>
           <br />
@@ -159,10 +160,11 @@ const checkout = (e: any) => {
           <div> 
             <br/>
           </div>
-          <div>
-          <p><i>Note: The testing provider, Academic Excellence, recommends that if you are testing in the middle of the school year you select the student's current grade level, 
-              if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student, not the student's past grade level. 
-              If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements with your local regulations. </i></p>
+          <div class="mt-2">
+            <h3 id="AENoticeAnchor" class="text-center text-xl bold pb-1">Academic Excellence Exam Grade Selection Recommendation</h3>
+            <p><i>The testing provider, Academic Excellence, recommends that if you are testing in the middle of the school year you select the student's current grade level, 
+                if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student, not the student's past grade level. 
+                If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements according to your local regulations.</i></p>
           </div>
     </form>
 
