@@ -64,18 +64,18 @@ const StudentForm: Component<Props> = (props: Props ) => {
               onChange={(e) => update({ grade: e.currentTarget.value })}
               required
             >
-              <option selected disabled hidden value="">Select Exam Grade Level</option>
-              <option value="2">2nd Grade (1 exam code)</option>
-              <option value="3">3rd Grade (1 exam code)</option>
-              <option value="4">4th Grade (1 exam code)</option>
-              <option value="5">5th Grade (1 exam code)</option>
-              <option value="6">6th Grade (1 exam code)</option>
-              <option value="7">7th Grade (1 exam code)</option>
-              <option value="8">8th Grade (1 exam code)</option>
-              <option value="9">9th Grade (1 exam code)</option>
-              <option value="10">10th Grade (1 exam code)</option>
-              <option value="11">11th Grade (1 exam code)</option>
-              <option value="12">12th Grade (1 exam code)</option>
+              <option selected disabled hidden value="">Select Test Grade Level</option>
+              <option value="2">2nd Grade (1 test code)</option>
+              <option value="3">3rd Grade (1 test code)</option>
+              <option value="4">4th Grade (1 test code)</option>
+              <option value="5">5th Grade (1 test code)</option>
+              <option value="6">6th Grade (1 test code)</option>
+              <option value="7">7th Grade (1 test code)</option>
+              <option value="8">8th Grade (1 test code)</option>
+              <option value="9">9th Grade (1 test code)</option>
+              <option value="10">10th Grade (1 test code)</option>
+              <option value="11">11th Grade (1 test code)</option>
+              <option value="12">12th Grade (1 test code)</option>
             </select>
             <div>
               <br/>
