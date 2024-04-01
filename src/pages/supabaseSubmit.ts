@@ -59,8 +59,6 @@ export const post: APIRoute = async ({ request }) => {
       console.log("Student Submission: " + JSON.stringify(studentSubmission))
 
       studentSubmission.order_number = order_number
-      studentSubmission.studentFirstName = element.first
-      studentSubmission.studentLastName = element.last
       studentSubmission.grade = element.grade
       studentList.push(studentSubmission)
       console.log("Student List:" + JSON.stringify(studentList))
@@ -94,7 +92,7 @@ export const post: APIRoute = async ({ request }) => {
     if (error) {
         return new Response(
           JSON.stringify({
-            message: "Error creating student entries",
+            message: error.message,
           }),
           { status: 500 }
         );

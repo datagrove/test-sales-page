@@ -1,7 +1,8 @@
-
-import { Component, For, createSignal, onMount, createResource } from 'solid-js'
+import type { Component } from 'solid-js'
+import { For, createSignal, onMount, createResource } from 'solid-js'
 import StudentForm from './StudentForm'
-import { Order, Student, loadCart } from './data';
+import type { Order, Student } from './data'
+import { loadCart } from './data';
 
 // async function postFormData(formData: Order) {
 //   const response = await fetch("/supabaseSubmit", {
@@ -29,7 +30,7 @@ export const OrderForm: Component = () => {
     // console.log(window.localStorage.order)
   }
   const addStudent = ()=>{
-    update( {student: [...order().student, {first: '', last: '', grade: ''} ]})
+    update( {student: [...order().student, { grade: ''} ]})
   }
   const remove = (i: number) => {
     const o = [ ...order().student]

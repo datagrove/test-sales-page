@@ -1,4 +1,5 @@
-import { Component, Show, createSignal, onMount, For } from 'solid-js'
+import type { Component } from 'solid-js'
+import { Show, createSignal, onMount, For } from 'solid-js'
 import { loadStripe } from '@stripe/stripe-js'
 import {  Elements, useStripe, useStripeElements } from 'solid-stripe'
 import { loadCart } from './data'
@@ -31,7 +32,7 @@ export const PayForm: Component<{}> = (props) => {
               <div class="flex justify-between px-4 py-1 border-2 border-slate-400 rounded mb-4">
             
                 <div>
-                  <p class="font-bold text-lg">{ student.first } { student.last }</p>
+                  {/* <p class="font-bold text-lg">{ student.first } { student.last }</p> */}
                   <p>Grade { student.grade } Test</p>
                   <p>$20.00</p>
                 </div>

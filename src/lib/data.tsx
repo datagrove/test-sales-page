@@ -1,6 +1,4 @@
 export interface Student {
-    first: string
-    last: string
     grade: string
   }
 
@@ -19,7 +17,7 @@ export function loadCart() : Order {
       first: '',
       last: '',
       email: '',
-      student: [{first: '', last: '', grade: ''}]
+      student: [{grade: ''}]
     }
   }
   
