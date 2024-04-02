@@ -1,7 +1,7 @@
-import type { Component } from 'solid-js'
+import type { Component, JSX } from 'solid-js'
 import { Show, createSignal, onMount, For } from 'solid-js'
 import { loadStripe } from '@stripe/stripe-js'
-import {  Elements, useStripe, useStripeElements } from 'solid-stripe'
+// import {  Elements, useStripe, useStripeElements } from 'solid-stripe'
 import { loadCart } from './data'
 
 
@@ -11,13 +11,14 @@ export const PayForm: Component<{}> = (props) => {
   const [stripe, setStripe] = createSignal(null)
   const otxt = window.localStorage.order
   const order = loadCart()
-  const n = order.student.length
-  const orderArray = order.student
+  const n = order.students.length
+  const orderArray = order.students
   const price = 20 * 100
 
   onMount(async () => {
     const result = await loadStripe(api_key())
     setStripe(result as any)
+    console.log("stripe Loaded")
   })
 
   return (
@@ -28,7 +29,7 @@ export const PayForm: Component<{}> = (props) => {
           {/* Amount: {n} tests * 20 = ${n*20} */}
 
           { 
-            orderArray.map((student) => (
+            orderArray.map((student: { grade: string }) => (
               <div class="flex justify-between px-4 py-1 border-2 border-slate-400 rounded mb-4">
             
                 <div>
@@ -65,9 +66,9 @@ export const PayForm: Component<{}> = (props) => {
       </div>
       
       <Show when={stripe()} fallback={<div>Loading stripe</div>}>
-        <Elements stripe={stripe() as any}>
+        {/* <Elements stripe={stripe() as any}> */}
         <CheckoutForm/>
-        </Elements>
+        {/* </Elements> */}
       </Show>
     </div>
   )
@@ -78,8 +79,8 @@ async function pay() {
 }
 
 function CheckoutForm() {
-  const stripe = useStripe()
-  const elements = useStripeElements()
+  // const stripe = useStripe()
+  // const elements = useStripeElements()
 
   const [paying,setPaying] = createSignal(false)
   const [error, setError] = createSignal("")
@@ -89,7 +90,7 @@ function CheckoutForm() {
     console.log("paying...")
     // we have to build the intent
     const order = loadCart()
-    const n = order.student.length
+    const n = order.students.length
     const price = 20 * 100
     const orderTotal = n * price
     const email = order.email
@@ -113,7 +114,9 @@ function CheckoutForm() {
     // console.log(a)
     const b = await a.json() as {
       url: string
+      error: string
     }
+    console.log(b.error)
     location.href = b.url;
 
     // if (!result.error) {

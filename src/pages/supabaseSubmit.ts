@@ -1,13 +1,13 @@
 import supabase from '../components/SupabaseClient'
 import type { APIRoute } from "astro";
 
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   const formData = await request.json();
   console.log("Form Data: " + JSON.stringify(formData))
   const firstName = formData.first;
   const lastName = formData.last;
   const email = formData.email;
-  const students = formData.student;
+  const students = formData.students;
   console.log("Students before Profile:" + JSON.stringify(students))
 
   // Validate the formData - you'll probably want to do more than this

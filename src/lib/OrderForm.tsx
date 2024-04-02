@@ -18,30 +18,32 @@ export const OrderForm: Component = () => {
   const [order, setOrder] = createSignal<Order>(loadCart())
 
   onMount(()=>{
+    console.log("mounted")
+    console.log(window.localStorage.order)
       if (window.localStorage.order) {
       const a = JSON.parse(window.localStorage.order)
-      // console.log("loaded ", a)
+      console.log("loaded ", a)
       setOrder(a)
     }
   })
   const update = (p: Partial<Order>) => {
     setOrder({ ...order(), ...p })
     window.localStorage.order = JSON.stringify(order());
-    // console.log(window.localStorage.order)
+    console.log(window.localStorage.order)
   }
   const addStudent = ()=>{
-    update( {student: [...order().student, { grade: ''} ]})
+    update( {students: [...order().students, {grade: ''} ]})
   }
   const remove = (i: number) => {
-    const o = [ ...order().student]
+    const o = [ ...order().students]
     o.splice(i,1)
-    update({student: o})
+    update({students: o})
   }
 
   const addStudentEnabled = () => {
     let result = false
 
-    order().student.map((student)=>{
+    order().students.map((student)=>{
       if(student.grade === ''){
         result = true
       }
@@ -107,11 +109,12 @@ const checkout = (e: any) => {
         <div class="mb-6">
           <h3 class="text-xl">Purchase CAT Codes by Grade Level</h3>
           <div class="m-2">
-            <For each={order().student} >{ (e,i)=> {
-              return <StudentForm student={()=>order().student[i()]} setStudent={(s: Student)=>{
-                const o = order().student;
+            <For each={order().students} >{ (e,i)=> {
+              console.log("student ", order().students[i()])
+              return <StudentForm student={()=>order().students[i()]} setStudent={(s: Student)=>{
+                const o = order().students;
                 o[i()] = s
-                update({student: o})
+                update({students: o})
               }} onRemove={()=>{remove(i())}}/>
             }}
             </For>

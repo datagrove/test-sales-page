@@ -6,10 +6,11 @@ const stripe=() => new Stripe(import.meta.env.PRIVATE_STRIPE_API, {
   apiVersion: '2022-11-15'
 })
 
-export const post: APIRoute = async function get({ params, request }: any) {
+export const POST: APIRoute = async function get({ params, request }: any) {
 
   const body = await request.json()
 
+  console.log("Body: " + JSON.stringify(body))
   let url = "https://cancel"
   let error = ""
   try {
@@ -32,6 +33,7 @@ export const post: APIRoute = async function get({ params, request }: any) {
     url = session.url ?? "https://cat.datagrove.com/cancel"
   } catch (e: any) {
     // console.log(stripe)
+    console.log("Error: " + JSON.stringify(e))
     error = JSON.stringify(e)
   }
 
