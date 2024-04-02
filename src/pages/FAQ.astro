@@ -1,7 +1,22 @@
 ---
 import PageLayout from '../Layouts/PageLayout.astro';
+import { Content } from "../content/faq.mdx";
 ---
+
 <PageLayout>
+  <div class="mx-6">
+    <div class="mb-8">
+      <h1 class="font-bold text-3xl mb-2 text-ptext1 dark:text-ptext1-DM">
+        Frequently Asked Questions
+      </h1>
+    </div>
+    <div class="prose dark:prose-invert">
+      <Content />
+    </div>
+  </div>
+</PageLayout>
+
+<!-- <PageLayout>
     <div class="mb-28 md:mx-16 lg:mx-32">
         <h2 class="text-xl md:text-3xl text-center my-6 font-bold">Frequently Asked Questions</h2>
         <div>
@@ -60,4 +75,4 @@ import PageLayout from '../Layouts/PageLayout.astro';
             </div>
         </div>
     </div>
-</PageLayout>
+</PageLayout> -->

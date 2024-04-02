@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import solidJs from "@astrojs/solid-js";
 import cloudflare from "@astrojs/cloudflare";
-
+import remarkToc from "remark-toc";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
@@ -12,6 +12,11 @@ export default defineConfig({
   adapter: cloudflare({
     mode: 'directory'
   }),
+  markdown: {
+    remarkPlugins: [
+      remarkToc
+    ],
+  },
   vite: {
     define: {
       'process.env.API_URL': JSON.stringify(process.env.API_URL),

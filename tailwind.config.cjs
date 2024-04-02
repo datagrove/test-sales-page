@@ -10,6 +10,21 @@ module.exports = {
 
 			colors: {
 				'bg-gray': '#36393F',
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						blockquote: {
+							fontStyle: 'normal',
+						},
+						'blockquote p:first-of-type::before': {
+							content: 'none',
+						},
+						'blockquote p:last-of-type::after': {
+							content: 'none',
+						},
+					}
+				}
 			}
 		},
 	},
