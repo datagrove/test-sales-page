@@ -3,19 +3,21 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+		'./src/content/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',],
 	theme: {
 		extend: {
-			
+
 			colors: {
-			'bg-gray': '#36393F',
-		}
-	},
+				'bg-gray': '#36393F',
+			}
+		},
 	},
 	variants: {
 		fill: ['disabled', 'hover', 'focus'],
 	},
 	plugins: [
+		require('@tailwindcss/typography'),
 		plugin(function ({ addBase, addComponents, addUtilities, theme }) {
 			addComponents({
 				'.faq': {
