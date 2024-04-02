@@ -26,7 +26,7 @@ const StudentForm: Component<Props> = (props: Props) => {
           id="studentGrade"
           class="p-1 rounded dark:bg-black dark:border dark:border-slate-400"
           value={props.student().grade}
-          onChange={(e) => update({ grade: e.currentTarget.value })}
+          oninput={(e) => update({ grade: e.currentTarget.value })}
           required
         >
           <option selected disabled hidden value="">

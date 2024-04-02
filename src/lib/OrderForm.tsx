@@ -75,7 +75,7 @@ const checkout = (e: any) => {
               placeholder='First Name'
               required
               value={order().first}
-              onChange={(e) => update({first: e.currentTarget.value})}
+              oninput={(e) => update({first: e.currentTarget.value})}
             />
           </div>
           <div class="p-3">
@@ -87,7 +87,7 @@ const checkout = (e: any) => {
               required
               placeholder='Last Name'
               value={order().last}
-              onChange={(e) => update({last: e.currentTarget.value})}
+              oninput={(e) => update({last: e.currentTarget.value})}
             />
           </div>
           <div class="p-3">
@@ -99,7 +99,7 @@ const checkout = (e: any) => {
               required
               placeholder='Email'
               value={order().email}
-              onChange={(e) => update({email: e.currentTarget.value})}
+              oninput={(e) => update({email: e.currentTarget.value})}
             />
           </div>
 
