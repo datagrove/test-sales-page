@@ -20,7 +20,7 @@ interface MenuLink extends Link {
 const { links = [] } = Astro.props;
 ---
 
-<div class="">
+<div class="mt-2">
   <header class="top-0 w-full transition-all ease-in duration-100">
     <div
       class="md:flex w-full content-center h-fit justify-between items-center"
@@ -32,8 +32,8 @@ const { links = [] } = Astro.props;
           </a>
         </div>
 
-        <div>
-          <h1 class="text-3xl md:text-4xl pl-2 py-2">
+        <div class="flex w-full mb-2 md:mb-0">
+          <div class="logo flex items-center mr-2">
             <a href="/">
               <svg class="w-16 h-16 fill-black stroke-black dark:stroke-slate-400 dark:fill-slate-400 inline-block" viewBox="0 0 180 180">
                 <g id="layer1">
@@ -64,10 +64,20 @@ const { links = [] } = Astro.props;
                   </g>
                 </g>
               </svg>
-              {SITE.title}
-              <div class="text-xs text-end">Brought to you by <a href="https://datagrove.com/learngrove/" class="underline text-green-600 font-bold">LearnGrove</a> a <a href="https://datagrove.com" class="underline">Datagrove</a> project</div>
             </a>
-          </h1>
+          </div>
+
+          <div class="twoText flex flex-col text-start justify-center">
+            <a href="/">
+              <div class="title text-xl md:text-3xl">
+                {SITE.title}
+              </div>
+            </a>
+
+            <div class="text-[10px] text-start mt-1">
+              <p class="italic font-light">Brought to you by <a href="https://datagrove.com/learngrove/" class="text-green-900 dark:text-green-500 font-bold">LearnGrove</a>, a <a href="https://datagrove.com" class="text-green-900 dark:text-green-500 font-bold">Datagrove</a> project</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -75,7 +85,7 @@ const { links = [] } = Astro.props;
         <div class="md:mx-4">
           <a
             href="/order"
-            class="underline underline-offset-2 md:no-underline md:hover:underline bg-green-700 rounded-full shadow px-4 py-2 text-white text-center justify-center border border-green-900 dark:border-slate-400"
+            class="md:no-underline md:hover:underline bg-green-900 dark:bg-green-500 rounded-full shadow px-4 md:py-2 text-white text-center justify-center border border-green-900 dark:border-slate-400"
             >Order</a
           >
         </div>
@@ -85,7 +95,7 @@ const { links = [] } = Astro.props;
         <div class="md:mx-4">
           <a
             href="/FAQ"
-            class="underline underline-offset-2 md:no-underline md:hover:underline"
+            class="text-green-900 dark:text-green-500 md:no-underline md:hover:underline"
             >FAQ</a
           >
         </div>
@@ -95,7 +105,7 @@ const { links = [] } = Astro.props;
         <div class="md:mx-4">
           <a
             href="mailto: achievement.testing@gmail.com"
-            class="underline underline-offset-2 md:no-underline md:hover:underline"
+            class="text-green-900 dark:text-green-500 md:no-underline md:hover:underline"
             >Contact Us</a
           >
         </div>

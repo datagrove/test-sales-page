@@ -21,7 +21,7 @@ const { links = [] } = Astro.props;
   <footer
     class="fixed bottom-0 left-0 z-20 w-full bg-gray-300 dark:bg-gray-800 p-4 border-t border-gray-300 dark:border-gray-500 shadow flex md:items-center justify-between md:p-6"
   >
-    <div class="flex items-center">
+    <div class="flex items-center ">
       <a href="https://datagrove.com">
         <svg
           class="w-12 h-12 mr-2 dark:fill-gray-400 fill-black"
@@ -39,16 +39,16 @@ const { links = [] } = Astro.props;
       </a>
       <p class="lg:text-base hidden sm:flex">A Datagrove Project</p>
     </div>
-    <div class="flex items-center justify-end underline">
+    <!-- <div class="flex items-center justify-end underline">
       <a href="mailto: achievement.testing@datagrove.com"
         >Achievement.Testing@datagrove.com</a
       >
-    </div>
-    <div class="">
-      <a href="/privacy" class="mr-4 underline"
+    </div> -->
+    <div class="flex items-center ">
+      <a href="/privacy" class="mr-4 text-green-900 dark:text-green-500 font-bold text-xs md:text-base"
         >Privacy Policy</a
       >
-      <a href="/terms" class="underline"
+      <a href="/terms" class="text-green-900 dark:text-green-500 font-bold text-xs md:text-base"
         >Terms</a
       >
     </div>
