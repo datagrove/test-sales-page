@@ -142,7 +142,7 @@ function CheckoutForm() {
         <div class="italic flex justify-center text-sm dark:text-gray-400">Discounts and Taxes calculated at checkout</div>
         <div class="flex justify-center mt-4">
         <button onClick={submit} class="bg-dg-green rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-dg-green dark:border-slate-400">
-          Pay
+          Proceed to Checkout
         </button>
         </div>
     </div>

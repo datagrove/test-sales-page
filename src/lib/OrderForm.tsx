@@ -153,7 +153,7 @@ const checkout = (e: any) => {
                 </g>
               </g>
             </svg>
-            <p class="px-2 text-sm">Add Code</p>
+            <p class="px-2 text-sm">Add Test Code</p>
           </button>
           </div>
           <br />
@@ -166,7 +166,7 @@ const checkout = (e: any) => {
             class="bg-dg-green rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-dg-green dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
             onclick={ checkout }
           >
-            Checkout
+            Review Order
           </button>
           </div>
           <div> 
