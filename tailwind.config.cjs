@@ -10,6 +10,8 @@ module.exports = {
 
 			colors: {
 				'bg-gray': '#36393F',
+				'dg-greenDM': '#1DD762',
+				'dg-green': '#198900',
 			},
 			typography: {
 				DEFAULT: {
