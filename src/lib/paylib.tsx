@@ -131,7 +131,7 @@ function CheckoutForm() {
     // }
   }
   return (
-    <div class="dark:text-white flex justify-center">
+    <div class="dark:text-white">
       
       {/* <div>You can use these values to test</div>
       <div>Your public stripe key is {api_key}</div>
@@ -139,10 +139,12 @@ function CheckoutForm() {
       <div>12/34</div>
       <div>999</div>
       <div>{error()}</div> */}
-      
-        <button onClick={submit} class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-green-900 dark:border-slate-400">
-          Pay
+        <div class="italic flex justify-center text-sm dark:text-gray-400">Discounts and Taxes calculated at checkout</div>
+        <div class="flex justify-center mt-4">
+        <button onClick={submit} class="bg-dg-green rounded-full shadow px-4 py-2 w-80 text-white text-2xl justify-center border border-dg-green dark:border-slate-400">
+          Proceed to Checkout
         </button>
+        </div>
     </div>
   )
 }

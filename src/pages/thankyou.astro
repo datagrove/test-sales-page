@@ -1,10 +1,10 @@
 ---
 import { SITE } from "../config";
 import PageLayout from '../Layouts/PageLayout.astro';
-// import { DatabaseSubmit} from '../lib/OrderSubmit'
-import { Order, loadCart } from '../lib/data'
-// import Webhook from '../lib/Webhook'
-import OrderSubmit from '../lib/OrderSubmit'
+// // import { DatabaseSubmit} from '../lib/OrderSubmit'
+// import { Order, loadCart } from '../lib/data'
+// // import Webhook from '../lib/Webhook'
+// import OrderSubmit from '../lib/OrderSubmit'
 
 ---
 
@@ -44,10 +44,12 @@ import OrderSubmit from '../lib/OrderSubmit'
 		</div>
 		<a 
 			href="/"
-			class="mt-16 bg-green-700 rounded-full px-4 py-2 text-white w-80 shadow text-center text-lg border border-green-900 dark:border-slate-400"
+			class="mt-16 bg-dg-green rounded-full px-4 py-2 text-white w-80 shadow text-center text-lg border border-dg-green dark:border-slate-400"
 		>
 			Return to Test Ordering Homepage
 		</a>
 	</div>
 </PageLayout>
-
+<script>
+	window.localStorage.removeItem("order");
+  </script>

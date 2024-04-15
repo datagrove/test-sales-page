@@ -53,7 +53,15 @@ export const OrderForm: Component = () => {
 
 const checkout = (e: any) => {
   e.preventDefault()
-  location.href="/pay"
+  if (order().first === '' || order().last === '' || order().email === '') {
+    alert("Please fill out all fields")
+  } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(order().email) === false) {
+    alert("Please enter a valid email")
+  } else if (order().students.length === 0) {
+    alert("Please add at least test by selecting a grade level")
+  } else {
+    location.href = '/pay'
+  }
 
 }
   
@@ -64,7 +72,7 @@ const checkout = (e: any) => {
         id="order-form"
         class="w-full md:w-1/2"
       >
-        <div class="mb-6">
+        <div class="mb-6 mt-6">
           <h3 class="text-xl">Your Information</h3>
           <div class="p-3">
             <label for="firstName" class=" sr-only">First Name</label>
@@ -124,8 +132,8 @@ const checkout = (e: any) => {
           </div>
           <div class=" flex justify-start mx-6">
           <button 
-            class="flex justify-center items-center bg-blue-900 rounded shadow ml-1 px-2 py-1 w-fit text-white border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
-            disabled={ addStudentEnabled()} 
+            class="flex justify-center items-center bg-blue-900 rounded shadow ml-1 px-2 py-1 w-fit text-white border border-dg-green dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700"
+            disabled={addStudentEnabled()} 
             onClick={addStudent}
 
           >
@@ -145,7 +153,7 @@ const checkout = (e: any) => {
                 </g>
               </g>
             </svg>
-            <p class="px-2 text-sm">Add Code</p>
+            <p class="px-2 text-sm">Add Test Code</p>
           </button>
           </div>
           <br />
@@ -155,10 +163,10 @@ const checkout = (e: any) => {
           <button 
             id="checkout"
             disabled={addStudentEnabled()}
-            class="bg-green-700 rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-green-900 dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
+            class="bg-dg-green rounded-full shadow px-4 py-2 w-80 text-white justify-center border border-dg-green dark:border-slate-400 disabled:bg-slate-400 dark:disabled:bg-slate-700 text-2xl disabled:text-slate-300"
             onclick={ checkout }
           >
-            Checkout
+            Review Order
           </button>
           </div>
           <div> 
@@ -166,7 +174,7 @@ const checkout = (e: any) => {
           </div>
           <div class="mt-2">
             <h3 id="AENoticeAnchor" class="text-center text-xl bold pb-1">Academic Excellence Exam Grade Selection Recommendation</h3>
-            <p><i>Testing provider <a href="https://www.academicexcellence.com/complete-online-california-achievement-test-timed/?attributes=eyI5NSI6IiIsIjk2IjoiIiwiOTciOiIiLCIxMDAiOiI4OCIsIjk4IjoiODciLCI5OSI6Ijg1In0" target="_blank" class="underline">Academic Excellence recommends</a> that if you are testing in the middle of the school year you select the student's current grade level, 
+            <p><i>Testing provider <a href="https://www.academicexcellence.com/complete-online-california-achievement-test-not-timed/" target="_blank" class="underline">Academic Excellence </a>recommends in their ordering instructions that if you are testing in the middle of the school year you select the student's current grade level, 
                 if you are testing at the end of the year or between school years select the <b>next</b> grade level for your student, not the student's past grade level. 
                 If you are using this exam to comply with homeschool requirements we encourage you to confirm grade level requirements according to your local regulations.</i></p>
           </div>
